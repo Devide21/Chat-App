@@ -12,9 +12,6 @@ function ChatDetails({ showProfile, setShowProfile }) {
         location: 'California, USA'
     });
 
-    // const [showProfile, setShowProfile] = useState(false);
-    // console.log(showProfile);
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -205,10 +202,8 @@ function ChatDetails({ showProfile, setShowProfile }) {
                     <AttachedFiles />
                 </div>
             </div>
-            <div>
-                <button onClick={() => setShowProfile(false)}>Hide Profile</button>
-                {showProfile && <p>Profile is visible</p>}
-            </div>
+
+
 
         </div >
     )
