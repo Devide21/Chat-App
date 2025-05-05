@@ -1,0 +1,329 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+* {
+  font-family: sans-serif;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.chat-background {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23999' fill-opacity='0.05'%3E%3Cpath d='M30 10a5 5 0 100-10 5 5 0 000 10zM10 30a5 5 0 100-10 5 5 0 000 10zM50 30a5 5 0 100-10 5 5 0 000 10zM30 50a5 5 0 100-10 5 5 0 000 10z'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.message-bubble {
+  max-width: 100%;
+  padding: 10px 15px;
+  border-radius: 15px;
+}
+
+
+/* Logout Page  */
+.logout-page {
+  height: 100vh;
+  width: 100vw;
+  background-color: #58b87a;
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  width: 400px;
+  color: white;
+  padding: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar h4 {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar h4 i {
+  margin-right: 0.5rem;
+}
+
+.sidebar img {
+  width: 45vw;
+  padding-left: 50px;
+}
+
+.logout-box {
+  background-color: #fff;
+  flex-grow: 1;
+  margin: 2rem;
+  border-radius: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  background-color: #d9f2e3;
+  border-radius: 50%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* +++++++++++++++Logoin page+++++++++++++ */
+.login-page {
+  height: 100vh;
+  background-color: #5cbf7c;
+}
+
+.sidebar {
+  width: 350px;
+  background-color: #5cbf7c;
+  color: white;
+}
+
+.sidebar .illustration {
+  max-width: 250px;
+  margin-top: auto;
+}
+
+.login-box {
+  background-color: #fff;
+  border-radius: 1rem;
+  margin: 2rem;
+  padding: 2rem;
+  min-width: 400px;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.signup-ruler {
+  height: 2px;
+  width: 100%;
+  background-color: rgb(219, 219, 219);
+  top: 12px;
+  left: 0;
+  position: relative;
+}
+
+.form-check-input:checked {
+  background-color: #5cbf7c;
+  border-color: #5cbf7c;
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(92, 191, 124, 0.25);
+}
+
+.form-control:focus {
+  border: 1px solid rgb(230, 230, 230);
+}
+
+/*++++++++++++++ Profile ++++++++++++++*/
+.profile-btn {
+  top: 0px;
+  position: relative;
+  left: 135px;
+}
+
+.attached-file {
+  border: 1px solid;
+}
+
+/* +++++++++++++++ Call Logs +++++++++++++ */
+.avatar-initials {
+  width: 40px;
+  height: 40px;
+  background-color: #dee2e6;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+/* +++++++++++++++ Bookmark List +++++++++++++ */
+.icon-circle {
+  width: 36px;
+  height: 36px;
+  background-color: #e6f4ea;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+/* +++++++++++++++ ChatList +++++++++++++ */
+.active-dot {
+  position: absolute;
+  height: 13px;
+  width: 13px;
+  background-color: #06d6a0;
+  border-radius: 50%;
+  border: 2px solid white;
+  top: 39px;
+  margin-left: 33px;
+}
+
+.away-dot {
+  position: absolute;
+  height: 13px;
+  width: 13px;
+  background-color: #e1e100;
+  border-radius: 50%;
+  border: 2px solid white;
+  top: 39px;
+  margin-left: 33px;
+}
+
+/* ++++++++++++++++++Side Bar++++++++++++++++ */
+.side-bar {
+  /* width: '80px'; */
+  height: '100vh'
+}
+
+/* ++++++++++++++++++ Chat Layout ++++++++++++++++ */
+.main-body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* ++++++++++++++++++ Welcome Pane ++++++++++++++++ */
+.welcome-pane {
+  height: '100vh';
+}
+
+
+/* ++++++++++++++++++ book mark ++++++++++++++++ */
+.book-mark {
+  width: "300px";
+  height: "100vh";
+  overflow-y: "auto";
+}
+
+/* ++++++++++++++++++ Settings ++++++++++++++++ */
+.edit-icon {
+  height: 31px;
+  width: 31px;
+  cursor: pointer;
+}
+
+.settings-profile {
+  position: relative;
+  z-index: 32;
+  width: 31px;
+  top: -10px;
+  left: 162px;
+  height: 31px;
+}
+
+.active-setting {
+  height: 9px;
+  width: 9px;
+  background-color: #06d6a0;
+  border-radius: 100px;
+  margin: 7px 6px 0px -3px;
+  z-index: 213456;
+}
+
+.active-setting-btn {
+  height: 9px;
+  width: 9px;
+  background-color: #06d6a0;
+  border-radius: 100px;
+  /* margin: -6px 6px 0px -3px; */
+  z-index: 213456;
+  position: relative;
+  top: 17px;
+  left: -15px;
+
+}
+
+.accordion-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: rgb(243, 243, 243);
+  color: inherit;
+}
+
+.color-palate {
+  height: 30px;
+  width: 30px;
+}
+
+/* ++++++++++++++++++ chat deatails ++++++++++++++++ */
+.chat-details {
+  position: relative;
+  width: 350px;
+  height: 250px;
+
+
+  img {
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+
+  }
+}
+.favourite-btn.active .bx-heart {
+  color: rgb(239, 71, 111);
+}
+button:active  :hover{
+  border: none;
+}
