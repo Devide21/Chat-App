@@ -11,8 +11,6 @@ import { ToggleSidebar } from "../redux/slices/app";
 import { useDispatch, useSelector } from "react-redux";
 
 
-// import {Pages} from "./pages"
-
 function ChatLayout() {
   const [sideIconbar, setSideIconbar] = useState("ChatList");
   const [selectedContact, setSelectedContact] = useState(null);
@@ -78,7 +76,6 @@ function ChatLayout() {
   }
   const dispatch = useDispatch();
   const { sidebar } = useSelector((store) => store.app);
-  // console.log(app);
 
 
   return (

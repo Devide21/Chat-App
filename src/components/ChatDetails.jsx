@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { ThreeDotsVertical, ThreeDots } from 'react-bootstrap-icons';
 import MediaGallery from './MediaGallery';
 import AttachedFiles from './AttachedFile';
+import { useDispatch, useSelector } from 'react-redux';
+import { ToggleSidebar } from "../redux/slices/app";
+
 
 
 function ChatDetails({ showProfile, setShowProfile }) {
@@ -34,6 +37,9 @@ function ChatDetails({ showProfile, setShowProfile }) {
         setShow(!show);
     }
 
+    const dispatch = useDispatch();
+    const { sidebar } = useSelector((store) => store.app);
+
 
     return (
         <div className='vh-100 border-start border-4'>
@@ -44,7 +50,9 @@ function ChatDetails({ showProfile, setShowProfile }) {
                     }}>
                         <div className='p-3 fs-5'>
                             <i
-                                onClick={() => setShowProfile(false)}
+                                onClick={() => {
+                                    dispatch(ToggleSidebar());
+                                }}
                                 className='fa-solid fa-xmark text-white'></i>
                         </div>
                         <div className="dropdown">
