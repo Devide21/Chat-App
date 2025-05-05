@@ -7,15 +7,17 @@ import SidebarContent from "./SidebarContent";
 import Settings from "./Settings";
 import ChatDetails from "./ChatDetails";
 import { useRef, useEffect } from 'react';
+import { ToggleSidebar } from "../redux/slices/app";
+import { useDispatch, useSelector } from "react-redux";
 
 
 // import {Pages} from "./pages"
 
 function ChatLayout() {
-  const [sidebar, setSidebar] = useState("ChatList");
+  const [sideIconbar, setSideIconbar] = useState("ChatList");
   const [selectedContact, setSelectedContact] = useState(null);
   const [showProfile, setShowProfile] = useState(true);
-  
+
 
   const [messages, setMessages] = useState([
     { id: 1, sender: 'Alice', text: 'Hey team, any update on the report?', time: '10:05 AM', mine: false, profile: 'https://static.vecteezy.com/system/resources/previews/000/439/863/non_2x/vector-users-icon.jpg' },
@@ -72,14 +74,18 @@ function ChatLayout() {
 
   }
   const handleSidebarChange = (item) => {
-    setSidebar(item)
+    setSideIconbar(item)
   }
+  const dispatch = useDispatch();
+  const { sidebar } = useSelector((store) => store.app);
+  // console.log(app);
+
 
   return (
     <div className="d-flex main-body">
       <div className="d-flex" style={{ borderRight: "1px solid #ddd" }}>
         <IconBar onSelectedIcon={handleSidebarChange} />
-        <SidebarContent sidebar={sidebar} setSelectedContact={setSelectedContact} />
+        <SidebarContent sidebar={sideIconbar} setSelectedContact={setSelectedContact} />
       </div>
       <div className="d-flex flex-column vh-100" style={{ width: "100%" }}>
         {selectedContact ? (
@@ -96,7 +102,11 @@ function ChatLayout() {
                 </div>
 
                 <div className="text-start">
-                  <div className="fw-bold">{selectedContact.name}</div>
+                  <div
+                    onClick={() => {
+                      dispatch(ToggleSidebar());
+                    }}
+                    className="fw-bold">{selectedContact.name}</div>
                   <small className="text-muted">{selectedContact.online ? 'Active' : 'Away'}</small>
                 </div>
               </div>
@@ -161,7 +171,7 @@ function ChatLayout() {
           <WelcomePane />
         )}
       </div>
-      <ChatDetails showProfile={showProfile} setShowProfile={setShowProfile} />
+      {sidebar.open && <ChatDetails showProfile={showProfile} setShowProfile={setShowProfile} />}
     </div>
 
   );
