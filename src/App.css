@@ -55,9 +55,16 @@
 }
 
 .message-bubble {
-  max-width: 100%;
+  max-width: 75%;
+  /* Prevents stretching across the full width */
   padding: 10px 15px;
   border-radius: 5px;
+  word-wrap: break-word;
+  /* Allows long words to break */
+  word-break: break-word;
+  /* Breaks long continuous strings */
+  overflow-wrap: break-word;
+  /* Fallback for compatibility */
 }
 
 .chat-dropdown {

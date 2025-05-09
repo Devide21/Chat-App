@@ -80,6 +80,7 @@ function ChatLayout() {
   const { sidebar } = useSelector((store) => store.app);
 
 
+
   return (
     <div className="d-flex main-body">
       <div className="d-flex" style={{ borderRight: "1px solid #ddd" }}>
@@ -128,12 +129,16 @@ function ChatLayout() {
             {/* Chat Area */}
             <div className="chat-background flex-grow-1 overflow-auto p-3">
               {messages.map(msg => (
-                <div className={`d-flex mb-3  ${msg.mine ? 'justify-content-end  text-end' : 'justify-content-start text-start '}`} key={msg.id}>
+                <div className={`d-flex mb-3  ${msg.mine ? 'justify-content-end  text-end' : 'justify-content-start  text-start '}`} key={msg.id}>
                   <div
                     key={msg.id}
                     className={`d-grid mb-3  ${msg.mine ? 'justify-content-end  text-end order-1' : 'justify-content-start text-start '}`}
                   >
-                    <div className={`message-bubble ${msg.mine ? 'bg-success text-white me-4' : 'bg-light border ms-4 shadow-sm'}`}>
+                    <div className={`message-bubble ${msg.mine ? 'bg-success text-white me-4' : 'bg-light border ms-4 shadow-sm'}`}
+                      style={{
+                        justifySelf: msg.mine ? 'flex-end' : 'flex-start'
+                      }}
+                    >
                       <div>{msg.text}</div>
                     </div>
                     <div className={`d-flex gap-3 ${msg.mine ? 'flex-row-reverse' : 'flex-row'}`}>
@@ -145,7 +150,7 @@ function ChatLayout() {
 
                   <div className="dropdown">
                     <button className="btn btn-white border-0 chat-dropdown  fs-5 fw-semibold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fa-solid fa-ellipsis-vertical "></i>
+                      <i className="fa-solid fa-ellipsis-vertical "></i>
                     </button>
                     <ul className="dropdown-menu p-3">
                       <li><a className="dropdown-item d-flex justify-content-between text-secondary border-0" href="#"><span className="text-dark">Reply</span><i className="bx bx-share ms-2 text-muted"></i></a></li>
@@ -186,19 +191,18 @@ function ChatLayout() {
           <WelcomePane />
         )}
       </div>
-      {sidebar.open && < ChatDetails showProfile={showProfile} setShowProfile={setShowProfile} />}
-      {/* {sidebar.open && (() => {
+      {/* {sidebar.open && < ChatDetails showProfile={showProfile} setShowProfile={setShowProfile} />} */}
+      {/* {dispatch(sidebar.open = false)} */}
+      {sidebar.open && (() => {
         switch (sidebar.type) {
           case "CONTACT":
-            return < ChatDetails showProfile={showProfile} setShowProfile={setShowProfile} />
-
+            return <ChatDetails showProfile={showProfile} setShowProfile={setShowProfile} />;
           case "SHARED":
-            return <SharedMessages />
-
+            return <SharedMessages />;
           default:
-            break;
+            return null;
         }
-      })()} */}
+      })()}
     </div>
 
   );

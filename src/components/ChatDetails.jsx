@@ -39,8 +39,7 @@ function ChatDetails({ showProfile, setShowProfile }) {
 
     const dispatch = useDispatch();
     const { sidebar } = useSelector((store) => store.app);
-
-
+    
     return (
         <div className='vh-100 border-start border-4'>
             <div className='position-sticky p-3 border-bottom border-tertiary top-0 z-3 bg-white  pb-4'>

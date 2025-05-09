@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     sidebar: {
         open: false,
-        type: "CONTACTS", // CONTACTS, CHAT, CALLS
+        type: "CONTACT", 
     }
 };
 
