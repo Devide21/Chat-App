@@ -9,6 +9,8 @@ import ChatDetails from "./ChatDetails";
 import { useRef, useEffect } from 'react';
 import { ToggleSidebar } from "../redux/slices/app";
 import { useDispatch, useSelector } from "react-redux";
+import SharedMessages from "./SharedMessages";
+import { ThreeDotsVertical } from "react-bootstrap-icons";
 
 
 function ChatLayout() {
@@ -126,17 +128,33 @@ function ChatLayout() {
             {/* Chat Area */}
             <div className="chat-background flex-grow-1 overflow-auto p-3">
               {messages.map(msg => (
-                <div
-                  key={msg.id}
-                  className={`d-grid mb-3  ${msg.mine ? 'justify-content-end  text-end' : 'justify-content-start text-start '}`}
-                >
-                  <div className={`message-bubble ${msg.mine ? 'bg-success text-white me-4' : 'bg-light border ms-4 shadow-sm'}`}>
-                    <div>{msg.text}</div>
+                <div className={`d-flex mb-3  ${msg.mine ? 'justify-content-end  text-end' : 'justify-content-start text-start '}`} key={msg.id}>
+                  <div
+                    key={msg.id}
+                    className={`d-grid mb-3  ${msg.mine ? 'justify-content-end  text-end order-1' : 'justify-content-start text-start '}`}
+                  >
+                    <div className={`message-bubble ${msg.mine ? 'bg-success text-white me-4' : 'bg-light border ms-4 shadow-sm'}`}>
+                      <div>{msg.text}</div>
+                    </div>
+                    <div className={`d-flex gap-3 ${msg.mine ? 'flex-row-reverse' : 'flex-row'}`}>
+                      {msg.profile && <img src={msg.profile} alt="Profile" className={`rounded-circle`} style={{ width: 30, height: 30 }} />}
+                      <div className={`fw-semibold small mt-2`}>{msg.mine ? 'You' : msg.sender}</div>
+                      <div className={`text-end small text-muted mt-2  `} style={{ fontSize: '0.75rem' }}>{msg.time}</div>
+                    </div>
                   </div>
-                  <div className={`d-flex gap-3 ${msg.mine ? 'flex-row-reverse' : 'flex-row'}`}>
-                    {msg.profile && <img src={msg.profile} alt="Profile" className={`rounded-circle`} style={{ width: 30, height: 30 }} />}
-                    <div className={`fw-semibold small mt-2`}>{msg.mine ? 'You' : msg.sender}</div>
-                    <div className={`text-end small text-muted mt-2  `} style={{ fontSize: '0.75rem' }}>{msg.time}</div>
+
+                  <div className="dropdown">
+                    <button className="btn btn-white border-0 chat-dropdown  fs-5 fw-semibold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-ellipsis-vertical "></i>
+                    </button>
+                    <ul className="dropdown-menu p-3">
+                      <li><a className="dropdown-item d-flex justify-content-between text-secondary border-0" href="#"><span className="text-dark">Reply</span><i className="bx bx-share ms-2 text-muted"></i></a></li>
+                      <li><a className="dropdown-item d-flex justify-content-between text-secondary border-0" href="#"><span className="text-dark">Forward</span><i className="bx bx-share-alt ms-2 text-muted"></i></a></li>
+                      <li><a className="dropdown-item d-flex justify-content-between text-secondary border-0" href="#"><span className="text-dark">Copy</span><i className="bx bx-copy text-muted ms-2"></i></a></li>
+                      <li><a className="dropdown-item d-flex justify-content-between text-secondary border-0" href="#"><span className="text-dark">Bookmark</span><i className="bx bx-bookmarks text-muted ms-2"></i></a></li>
+                      <li><a className="dropdown-item d-flex justify-content-between text-secondary border-0" href="#"><span className="text-dark">Mark as unread</span><i className="bx bx-message-error text-muted ms-2 "></i></a></li>
+                      <li><a className="dropdown-item d-flex justify-content-between text-secondary border-0" href="#"><span className="text-dark">Delete</span><i className="bx bx-trash text-muted ms-2"></i></a></li>
+                    </ul>
                   </div>
                 </div>
               ))}
@@ -168,7 +186,19 @@ function ChatLayout() {
           <WelcomePane />
         )}
       </div>
-      {sidebar.open && <ChatDetails showProfile={showProfile} setShowProfile={setShowProfile} />}
+      {sidebar.open && < ChatDetails showProfile={showProfile} setShowProfile={setShowProfile} />}
+      {/* {sidebar.open && (() => {
+        switch (sidebar.type) {
+          case "CONTACT":
+            return < ChatDetails showProfile={showProfile} setShowProfile={setShowProfile} />
+
+          case "SHARED":
+            return <SharedMessages />
+
+          default:
+            break;
+        }
+      })()} */}
     </div>
 
   );

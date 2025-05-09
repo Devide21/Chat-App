@@ -1,6 +1,9 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { UpdateSidebarType } from '../redux/slices/app';
 
 const MediaGallery = () => {
+  // dispatch = useDispatch();
   return (
     <div className="mt-4 p-3 border-top border-tertiary">
       <div className="d-flex justify-content-between align-items-center mb-2">
@@ -14,7 +17,11 @@ const MediaGallery = () => {
           className="rounded-2 text-white d-flex justify-content-center align-items-center"
           style={{ width: '75px', height: '70px', backgroundImage: 'url(src/assets/doot-prfile-img.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}
         >
-          <span className="bg-dark opacity-25 p-4 rounded-2">+15</span>
+          <span
+            // onClick={() => {
+            //   dispatch(UpdateSidebarType("SHARED"))
+            // }}
+            className="bg-dark opacity-25 p-4 rounded-2">+15</span>
         </div>
       </div>
     </div>

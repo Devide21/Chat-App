@@ -57,7 +57,18 @@
 .message-bubble {
   max-width: 100%;
   padding: 10px 15px;
-  border-radius: 15px;
+  border-radius: 5px;
+}
+
+.chat-dropdown {
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3;
+}
+
+.chat-dropdown:hover {
+  cursor: pointer;
+  color: black;
 }
 
 
@@ -321,9 +332,11 @@
 
   }
 }
+
 .favourite-btn.active .bx-heart {
   color: rgb(239, 71, 111);
 }
-button:active  :hover{
+
+button:active :hover {
   border: none;
 }
