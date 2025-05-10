@@ -10,13 +10,17 @@ import { useRef, useEffect } from 'react';
 import { ToggleSidebar } from "../redux/slices/app";
 import { useDispatch, useSelector } from "react-redux";
 import SharedMessages from "./SharedMessages";
-import { ThreeDotsVertical } from "react-bootstrap-icons";
-
+import { UpdateSidebarType } from "../redux/slices/app";
 
 function ChatLayout() {
   const [sideIconbar, setSideIconbar] = useState("ChatList");
   const [selectedContact, setSelectedContact] = useState(null);
   const [showProfile, setShowProfile] = useState(true);
+
+  useEffect(() => {
+    dispatch(UpdateSidebarType("CONTACT"));
+  }, []);
+
 
 
   const [messages, setMessages] = useState([

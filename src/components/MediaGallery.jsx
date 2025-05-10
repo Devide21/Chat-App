@@ -12,9 +12,9 @@ const MediaGallery = () => {
         <small
           className="text-success"
           style={{ cursor: 'pointer' }}
-          // onClick={() => {
-          //   dispatch(UpdateSidebarType("SHARED"));
-          // }}
+          onClick={() => {
+            dispatch(UpdateSidebarType("SHARED"));
+          }}
         >
           Show all
         </small>
