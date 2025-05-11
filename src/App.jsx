@@ -23,8 +23,8 @@ function App() {
 
 
   return (
-    <div className="d-md-flex d-grid" style={{ width: "100vw" }}>
-      <ChatLayout />
+    <div className="d-md-flex d-grid" style={{ width: "100vw", height: "100vh" }}>
+      <Login />
       {/* <WelcomePane/> */}
 
     </div>

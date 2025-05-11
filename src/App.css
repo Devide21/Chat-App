@@ -88,6 +88,13 @@
   flex-direction: row;
 }
 
+form {
+  width: 100%;
+  text-align: left;
+  display: grid;
+  gap: 12px;
+}
+
 .sidebar {
   width: 400px;
   color: white;
@@ -109,15 +116,15 @@
 }
 
 .sidebar img {
-  width: 45vw;
+  width: 42vw;
   padding-left: 50px;
 }
 
 .logout-box {
   background-color: #fff;
   flex-grow: 1;
-  margin: 2rem;
-  border-radius: 1.5rem;
+  /* margin: 2rem; */
+  border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,7 +149,7 @@
 
 .sidebar {
   width: 350px;
-  background-color: #5cbf7c;
+  background-color: #58b87a;
   color: white;
 }
 
