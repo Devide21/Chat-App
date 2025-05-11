@@ -116,8 +116,8 @@ form {
 }
 
 .sidebar img {
-  width: 42vw;
-  padding-left: 50px;
+  width: 40vw;
+  /* padding-left: 50px; */
 }
 
 .logout-box {

@@ -1,13 +1,14 @@
 import React from 'react';
-import FormProvider from '/src/hookForm/FormProvider.jsx'
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Alert } from 'react-bootstrap';
+import FormProvider from '/src/hookForm/FormProvider.jsx';
 import { RHFTextField } from '../hookForm';
 
 const Login = () => {
     const [showPassword, setShowPassword] = React.useState(false);
+
     const LoginSchema = Yup.object().shape({
         email: Yup.string().required("Email is required").email("Email is invalid"),
         password: Yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
@@ -23,77 +24,88 @@ const Login = () => {
         defaultValues,
     });
 
-    const { handleSubmit, reset, setError, formState: { errors, isSubmitting, isSubmitSuccessful } } = methods;
+    const {
+        handleSubmit,
+        reset,
+        setError,
+        formState: { errors }
+    } = methods;
 
     const onSubmit = async (data) => {
         try {
-            // submit data to backend
-
+            // Submit to backend
         } catch (error) {
-            console.log(error);
+            console.error(error);
             reset();
-            setError("afterSubmit", { ...error, message: error.message, });
-
+            setError("afterSubmit", {
+                type: 'manual',
+                message: error.message || "Something went wrong",
+            });
         }
-    }
+    };
 
     return (
         <>
-            {!!errors.afterSubmit && <Alert type="danger" message="Something went wrong!" />
-            }
+            {!!errors.afterSubmit && (
+                <Alert variant="danger">{errors.afterSubmit.message}</Alert>
+            )}
             <div className="logout-page d-flex p-4" style={{ width: "100vw", height: "100%" }}>
-                <div className="sidebar d-flex flex-column justify-content-center align-items-start p-4">
-                    <h3 className="text-white fw-bold mb-2 fw-semibold  ">
-                        <i className="bx bxs-message-alt-detail align-middle text-white h3 mb-1 me-2"></i>
-                        Doot</h3>
+                <div className="sidebar d-flex flex-column justify-content-center align-items-start p-5">
+                    <h4 className="text-white fw-bold mb-2">
+                        <i className="fa-regular fa-comment-dots"></i> Doot
+                    </h4>
                     <p className="text-white-50">Responsive Bootstrap 5 Chat App</p>
                     <div className="mt-auto">
                         <img className='logout-img'
-                            src='src\assets\chat-Apk-auth-img..png'
+                            src='src/assets/chat-Apk-auth-img..png'
                             alt="Logout Illustration"
                         />
-
                     </div>
                 </div>
-                <div className="logout-box py-4 pt-5 h-100 d-grid justify-content-center align-items-center flex-grow-1">
-                    <div className="d-flex flex-column  justify-content-center align-items-center" style={{ width: "30vw" }}>
-                        <h4 className=" mb-2 fs-3 fw-semibold text-dark opacity-75 ">Welcome Back!</h4>
-                        <p className="text-secondary mb-5" style={{ fontFamily: "sans-serif" }}>Sign in to continue to Doot.</p>
-                        <FormProvider
-                            methods={methods}
-                            onSubmit={handleSubmit(onSubmit)}
-                            className="d-flex flex-column text-start w-100 p-3 gap-3">
-                            <label htmlFor="username" className=''>Username</label>
-                            {/* <input type="email" placeholder="Enter Username" className="form-control shadow-none" /> */}
-                            <RHFTextField name="email" label="Email address" />
-                            <div className='d-flex  justify-content-between '>
-                                <label htmlFor="username">Password</label>
-                                <a className=' text-decoration-none text-secondary' style={{ fontSize: "small" }} href="">Forgot Password?</a>
 
+                <div className="logout-box py-4 pt-5 h-100 d-grid justify-content-center align-items-center flex-grow-1">
+                    <div className="d-flex flex-column justify-content-center align-items-center" style={{ width: "31vw" }}>
+                        <h4 className="fw-semibold text-dark mb-2 fs-2 opacity-75">Welcome Back!</h4>
+                        <p className="text-secondary mb-4">Sign in to continue to Doot.</p>
+
+                        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+                            <label htmlFor="email">Username</label>
+                            <RHFTextField name="email" placeholder="Enter email" />
+
+                            <div className='d-flex justify-content-between mt-3'>
+                                <label htmlFor="password">Password</label>
+                                <a className='text-decoration-none text-secondary' style={{ fontSize: "small" }} href="#">
+                                    Forgot Password?
+                                </a>
                             </div>
-                            <div className="position-relative w-100">
-                                <RHFTextField
-                                    name="password"
-                                    type={showPassword ? "text" : "password"}
-                                    className="form-control pe-5"
-                                />
-                                <i
-                                    className={`fa-solid ${showPassword ? "fa-eye-slash" : "fa-eye"} position-absolute end-0 top-50 translate-middle-y me-3`}
-                                    style={{ cursor: "pointer" }}
-                                    onClick={() => setShowPassword(!showPassword)}
-                                />
-                            </div>
-                            {/* <input type="password" placeholder="Password" className="shadow-none form-control" /> */}
-                            <div className='d-flex'>
+
+                            <RHFTextField
+                                name="password"
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Password"
+                                InputProps={{
+                                    endAdornment: (
+                                        <i
+                                            className={`fa-solid ${showPassword ? "fa-eye-slash" : "fa-eye"}`}
+                                            onClick={() => setShowPassword(!showPassword)}
+                                        ></i>
+                                    )
+                                }}
+                            />
+
+                            <div className='d-flex mb-3'>
                                 <input type="checkbox" className='form-check-input me-2' />
-                                <label htmlFor="username">Remember me</label>
+                                <label>Remember me</label>
                             </div>
-                            <button type="submit" className="btn btn-success py-2">Log In</button>
+
+                            <button type="submit" className="btn btn-success w-100 py-2">Log In</button>
+
                             <div className='d-flex justify-content-center mt-4'>
                                 <div className='signup-ruler'></div>
                                 <div className='w-100 text-center'><p>Sign up with</p></div>
                                 <div className='signup-ruler'></div>
                             </div>
+
                             <div className='d-flex gap-3'>
                                 <div className='bg-body-secondary rounded-2 py-3 w-100 text-center py-2  px-4' style={{ cursor: "pointer" }}>
                                     <i className="mdi mdi-facebook text-indigo"></i>
@@ -106,10 +118,13 @@ const Login = () => {
                                 </div>
                             </div>
                         </FormProvider>
-                        <p className=" mt-4 mb-5">Don't have an account? <a href="#" className="text-primary text-success pointer">Register</a></p>
+
+                        <p className="mt-3 mb-2 mt-4">
+                            Don’t have an account? <a href="#" className="text-success">Register</a>
+                        </p>
                     </div>
                 </div>
-            </div >
+            </div>
         </>
     );
 };
