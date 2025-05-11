@@ -18,6 +18,11 @@
   padding: 0;
 }
 
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -85,6 +90,6 @@ body #root {
   padding: 0;
 }
 
-.form-control:focus{
+.form-control:focus {
   box-shadow: none;
 }

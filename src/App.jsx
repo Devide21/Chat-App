@@ -23,8 +23,8 @@ function App() {
 
 
   return (
-    <div className="d-md-flex d-grid" style={{ width: "100vw", height: "100vh" }}>
-      <Login />
+    <div className="d-md-flex d-grid" style={{ width: "98.9vw", height: "100%" }}>
+      <Register />
       {/* <WelcomePane/> */}
 
     </div>
