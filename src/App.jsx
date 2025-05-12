@@ -16,6 +16,7 @@ import WelcomePane from "./components/WelcomePane";
 import BookmarkList from "./components/BookmarkList";
 import ChatLayout from "./components/ChatLayout";
 import Settings from "./components/Settings";
+import ResetPassword from "./components/ResetPassword";
 
 
 
@@ -24,7 +25,7 @@ function App() {
 
   return (
     <div className="d-md-flex d-grid" style={{ width: "98.9vw", height: "100%" }}>
-      <Register />
+      <ResetPassword />
       {/* <WelcomePane/> */}
 
     </div>

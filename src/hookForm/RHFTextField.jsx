@@ -18,7 +18,7 @@ export default function RHFTextField({ name, helperText, InputProps, ...other })
                 const finalProps = {
                     ...field,
                     ...other,
-                    className: `form-control ${error ? 'is-invalid' : ''}`,
+                    className: `form-control text-secondary ${error ? 'is-invalid' : ''} `,
                     value: typeof field.value === "number" && field.value === 0 ? "" : field.value,
                 };
 
