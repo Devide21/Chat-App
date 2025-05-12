@@ -1,56 +1,56 @@
-export const  pages = [
+export const pages = [
     {
         id: 1,
         name: "Home",
-        icon: "fa-regular fa-message text-success",
+        icon: "bx  bx-message-detail",
         component: "DummyIcon",
     },
     {
         id: 2,
         name: "Profile",
-        icon: "fa-solid fa-user",
+        icon: "bx  bx-user-circle",
         component: "ProfileCard",
     },
     {
         id: 3,
         name: "Messages",
-        icon: "fa-regular fa-comments",
+        icon: "fa-regular fa-comments fs-4",
         component: "ChatList",
     },
     {
         id: 4,
         name: "Contacts",
-        icon: "fa-regular fa-address-card",
+        icon: "fa-regular fa-address-card fs-4",
         component: "ContactList",
     },
     {
         id: 5,
         name: "CallHistory",
-        icon: "fa-solid fa-phone-volume",
+        icon: "fa-solid fa-phone-volume fs-4",
         component: "CallHistory",
     },
     {
         id: 6,
         name: "Bookmarks",
-        icon: "fa-regular fa-bookmark",
+        icon: "bx  bx-bookmarks",
         component: "BookmarkList",
     },
     {
         id: 7,
         name: "Settings",
-        icon: "fa-solid fa-gear",
+        icon: "bx  bx-cog",
         component: "Settings",
     },
     {
         id: 8,
         name: "Bookmarks",
-        icon: "fa-regular fa-moon",
+        icon: "bx  bx-moon",
         component: "DarkMode",
     },
     {
         id: 9,
         name: "User",
-        icon: "fa-solid fa-circle-user",
+        icon: "fa-solid fa-circle-user fs-3",
         component: "UserProfile",
     },
 ];
