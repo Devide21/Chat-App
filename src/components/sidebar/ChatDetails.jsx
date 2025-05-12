@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
 import { ThreeDotsVertical, ThreeDots } from 'react-bootstrap-icons';
-import MediaGallery from './MediaGallery';
-import AttachedFiles from './AttachedFile';
+import MediaGallery from '../MediaGallery';
+import AttachedFiles from '../AttachedFile';
 import { useDispatch, useSelector } from 'react-redux';
-import { ToggleSidebar } from "../redux/slices/app";
+import { ToggleSidebar } from "../../redux/slices/app";
 
 
 

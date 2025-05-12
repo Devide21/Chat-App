@@ -7,7 +7,7 @@ function IconBar({ onSelectedIcon }) {
 
     return (
         <>
-            <div className="d-flex flex-md-column flex-row justify-content-between align-items-center bg-dark  py-md-2 py-0 px-4 fs-2 side-bar">
+            <div className="d-flex flex-column  justify-content-between align-items-center bg-dark  py-md-2 py-0 px-4 fs-2 side-bar">
                 {pages.map((page) => (
                     <div key={page.id}
                         className="text-center py-2">

@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Alert } from 'react-bootstrap';
 import FormProvider from '/src/hookForm/FormProvider.jsx';
-import { RHFTextField } from '../hookForm';
+import { RHFTextField } from '../../hookForm';
 
-const ResetPassword = () => {
+const ChangePassword = () => {
     const [sentEmail, setSentEmail] = useState("Enter your Email and instructions will be sent to you!")
 
 
@@ -92,4 +92,4 @@ const ResetPassword = () => {
     );
 };
 
-export default ResetPassword
+export default ChangePassword;
