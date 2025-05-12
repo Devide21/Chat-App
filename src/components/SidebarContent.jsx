@@ -1,4 +1,3 @@
-// SidebarContent.jsx
 import React from "react";
 import ChatList from "./ChatList";
 import ContactList from "./ContactList";
@@ -9,7 +8,7 @@ import ProfileCard from "./ProfileCard";
 import WelcomePane from "./WelcomePane";
 
 const SidebarContent = ({ sidebar, setSelectedContact }) => {
-console.log(sidebar);
+    // console.log(sidebar);
 
     switch (sidebar) {
         case "ChatList":

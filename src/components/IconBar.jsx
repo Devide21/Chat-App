@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { FaSearch, FaPlus, FaCommentDots, FaUserFriends, FaPhone, FaFileAlt, FaMoon, FaUserCircle } from "react-icons/fa";
 import { pages } from './pages';
 
 
 function IconBar({ onSelectedIcon }) {
     const [selectedIcon, setSelectedIcon] = useState("DummyIcon");
-    console.log(selectedIcon);
 
     return (
         <>
@@ -16,13 +14,13 @@ function IconBar({ onSelectedIcon }) {
                         <i className={` ${selectedIcon === page.component ? 'text-success' : 'text-white'} ${page.icon} `}
                             onClick={() => {
                                 setSelectedIcon(page.component);
-                                onSelectedIcon(selectedIcon);
+                                onSelectedIcon(page.component);
                             }}>
 
                         </i>
                     </div>
                 ))}
-            </div>
+            </div >
         </>
     )
 }

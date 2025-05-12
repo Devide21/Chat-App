@@ -12,7 +12,7 @@ function ChatList({ onSelectContact }) {
 
   return (
     <>
-      <div className="border-end bg-white" style={{  height: "100vh", width:"max-content" }}>
+      <div className="border-end bg-white" style={{ height: "100vh", width: "300px" }}>
         <div className="position-sticky top-0 z-3 bg-white p-3 pb-2">
           <div className="px-2 py-3 d-flex justify-content-between position-sticky top-0 z-3 bg-white p-3 pb-2">
             <h5 className="mb-0">Chats</h5>

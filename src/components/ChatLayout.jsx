@@ -21,8 +21,6 @@ function ChatLayout() {
     dispatch(UpdateSidebarType("CONTACT"));
   }, []);
 
-
-
   const [messages, setMessages] = useState([
     { id: 1, sender: 'Alice', text: 'Hey team, any update on the report?', time: '10:05 AM', mine: false, profile: 'https://static.vecteezy.com/system/resources/previews/000/439/863/non_2x/vector-users-icon.jpg' },
     { id: 2, sender: 'You', text: 'Working on the charts now. Will share soon!', time: '10:06 AM', mine: true, profile: 'https://static.vecteezy.com/system/resources/previews/000/439/863/non_2x/vector-users-icon.jpg' },
@@ -57,29 +55,10 @@ function ChatLayout() {
     setAddMessage('');
   };
 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (addMessage.trim() !== "") {
-      // Add the new message to the messages array
-      const newMessage = {
-        id: messages.length + 1,
-        sender: 'You',
-        text: addMessage,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        mine: true,
-        profile: 'https://static.vecteezy.com/system/resources/previews/000/439/863/non_2x/vector-users-icon.jpg'
-      };
-      messages.push(newMessage);
-      setAddMessage(""); // Clear the input field
-      console.log(newMessage);
-      console.log(messages);
-    }
-
-  }
   const handleSidebarChange = (item) => {
     setSideIconbar(item)
   }
+
   const dispatch = useDispatch();
   const { sidebar } = useSelector((store) => store.app);
 

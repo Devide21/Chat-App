@@ -40,9 +40,9 @@ const getIcon = (type) => {
 
 const BookmarkList = () => {
     return (
-        <div className="p-3 pt-0 bg-white rounded shadow-sm book-mark vh-100 overflow-auto" >
-            <div className='position-sticky top-0 z-3 bg-white p-3 pb-2'>
-                <h6 className="mb-3 fw-bold text-start fs-4 text-dark-emphasis position-sticky top-0 ">Bookmark</h6>
+        <div className="p-3 pt-0 bg-white rounded shadow-sm book-mark vh-100 overflow-auto" style={{ width: "300px" }}>
+            <div className='position-sticky top-0 z-3 bg-white p-4 ps-3 pb-2'>
+                <h6 className=" fw-bold text-start fs-4 text-dark-emphasis position-sticky top-0 ">Bookmark</h6>
             </div>
             <ul className="list-group border-0">
                 {bookmarks.map((item, index) => (
