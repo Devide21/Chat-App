@@ -25,9 +25,7 @@ function App() {
 
   return (
     <div className="d-md-flex d-grid" style={{ width: "98.9vw", height: "100%" }}>
-      <ResetPassword />
-      {/* <WelcomePane/> */}
-
+      <ChatLayout />
     </div>
   )
 }
