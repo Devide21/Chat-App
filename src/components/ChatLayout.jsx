@@ -13,6 +13,7 @@ import SharedMessages from "./sidebar/SharedMessages";
 import { UpdateSidebarType } from "../redux/slices/app";
 import CallModal from "./Modals/CallModal";
 import VideoModal from "./Modals/VideoModal"
+import Archived from "./sidebar/Archived";
 
 
 function ChatLayout() {
@@ -21,11 +22,7 @@ function ChatLayout() {
   const [showProfile, setShowProfile] = useState(true);
   const [showCallModal, setShowCallModal] = useState(false);
   const [showVideoModal, setShowVideoModal] = useState(false);
-
-  const selectedUser = {
-    name: "Carla Serrano",
-    avatar: "https://randomuser.me/api/portraits/women/68.jpg"
-  };
+  const [showArchived, setShowArchived] = useState(false);
 
   useEffect(() => {
     dispatch(UpdateSidebarType("CONTACT"));
@@ -37,6 +34,7 @@ function ChatLayout() {
     { id: 3, sender: 'Bob', text: 'I’ve uploaded the raw data in the drive.', time: '10:07 AM', mine: false, profile: 'https://static.vecteezy.com/system/resources/previews/000/439/863/non_2x/vector-users-icon.jpg' },
     { id: 4, sender: 'You', text: 'Perfect, thanks!', time: '10:08 AM', mine: true, profile: 'https://static.vecteezy.com/system/resources/previews/000/439/863/non_2x/vector-users-icon.jpg' }
   ]);
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -68,6 +66,9 @@ function ChatLayout() {
   const handleSidebarChange = (item) => {
     setSideIconbar(item)
   }
+  const handleArchiveChange = (item) => {
+    setShowArchived(item)
+  }
 
   const dispatch = useDispatch();
   const { sidebar } = useSelector((store) => store.app);
@@ -78,7 +79,9 @@ function ChatLayout() {
     <div className="d-flex main-body">
       <div className="d-flex" style={{ borderRight: "1px solid #ddd" }}>
         <IconBar onSelectedIcon={handleSidebarChange} />
-        <SidebarContent sidebar={sideIconbar} setSelectedContact={setSelectedContact} />
+        <SidebarContent sidebar={sideIconbar} setSelectedContact={setSelectedContact} onSelectedIcon={handleSidebarChange} onShowArchived={handleArchiveChange}
+        />
+        {/* <Archived sidebar={sideIconbar} setSelectedContact={setSelectedContact} /> */}
       </div>
       <div className="d-flex flex-column vh-100" style={{ width: "100%" }}>
         {selectedContact ? (

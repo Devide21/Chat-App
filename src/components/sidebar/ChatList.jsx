@@ -4,6 +4,10 @@ import { favourites, directMessages, channels } from "./contacts";
 
 function ChatList({ onSelectContact }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedIcon, setSelectedIcon] = useState("");
+  const [showArchived, setShowArchived] = useState(false);
+  
+
 
   const filterContacts = (list) =>
     list.filter((contact) =>
@@ -94,7 +98,9 @@ function ChatList({ onSelectContact }) {
             ))}
           </div>
 
-          <div className="px-3 py-2 text-success small" style={{ cursor: "pointer" }}>Archived Contacts<i className="ms-2 fa-solid fa-download"></i></div>
+          <div className="px-3 py-2 text-success small pointer"
+          onClick={() => setShowArchived(!showArchived)}
+          >Archived Contacts<i className="ms-2 fa-solid fa-download"></i></div>
         </div>
       </div>
     </>
