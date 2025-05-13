@@ -115,7 +115,7 @@ function ChatLayout() {
                   <i className="fa-solid fa-video"></i>
                 </button>
                 <VideoModal user={selectedContact} show={showVideoModal} setShow={setShowVideoModal} />
-              
+
 
                 <i className="fas fa-info-circle pointer"></i>
                 <i className="fas fa-ellipsis-v pointer"></i>

@@ -9,17 +9,7 @@
   font-family: sans-serif;
 }
 
-.btn:focus,
-.btn:active,
-.btn:focus:active {
-  outline: none !important;
-  box-shadow: none !important;
-  background-color: inherit !important;
-}
-button:focus:not(:focus-visible) {
-  outline: none;
-  box-shadow: none;
-}
+
 
 
 .logo {
@@ -383,4 +373,28 @@ button:active :hover {
 
 .call-icon:hover {
   background-color: #e1e1e1;
+}
+
+.videoCall-modal {
+  min-height: 450px;
+  overflow: hidden;
+  img{
+    height: 410px;
+    width: -webkit-fill-available;
+  }
+}
+
+.callend-btn {
+  width: 80px;
+  height: 80px;
+  border: 6px solid white;
+  left: 210px;
+  position: relative;
+  bottom: 40px;
+}
+
+.btn-collection {
+  bottom: 50px;
+  left: 133px;
+
 }
