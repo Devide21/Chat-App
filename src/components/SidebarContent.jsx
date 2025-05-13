@@ -1,10 +1,10 @@
 import React from "react";
-import ChatList from "./ChatList";
-import ContactList from "./ContactList";
-import Settings from "./Settings";
-import BookmarkList from "./BookmarkList";
-import CallHistory from "./CallHistory";
-import ProfileCard from "./ProfileCard";
+import ChatList from "./sidebar/ChatList";
+import ContactList from "./sidebar/ContactList";
+import Settings from "./sidebar/Settings";
+import BookmarkList from "./sidebar/BookmarkList";
+import CallHistory from "./sidebar/CallHistory";
+import ProfileCard from "./sidebar/ProfileCard";
 import WelcomePane from "./WelcomePane";
 
 const SidebarContent = ({ sidebar, setSelectedContact }) => {

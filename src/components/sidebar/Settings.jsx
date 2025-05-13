@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import MediaGallery from './MediaGallery';
-import AttachedFiles from './AttachedFile';
+import MediaGallery from '../MediaGallery';
+import AttachedFiles from '../AttachedFile';
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 
 function Settings() {

@@ -1,12 +1,12 @@
 import React from 'react';
-import MediaGallery from './MediaGallery';
-import AttachedFiles from './AttachedFile';
+import MediaGallery from '../MediaGallery';
+import AttachedFiles from '../AttachedFile';
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 
 
 const ProfileCard = () => {
     return (
-        <div className="bg-white" style={{ width: '300px', height: '100vh',  }}>
+        <div className="bg-white" style={{ width: '300px', height: '100vh', }}>
             <div className="position-sticky border-bottom border-tertiary top-0 z-3 bg-white  pb-4">
                 <div className="text-center position-relative">
                     <div className='d-flex position-absolute text-white justify-content-between'>
@@ -41,7 +41,7 @@ const ProfileCard = () => {
                 </div>
             </div>
 
-            <div style={{overflowY:"scroll", height:"55vh"}}>
+            <div style={{ overflowY: "scroll", height: "55vh" }}>
                 <div className="mt-4 p-3 text-start">
                     <p className="text-secondary">If several languages coalesce, the grammar of the resulting language is more simple.</p>
 

@@ -1,21 +1,29 @@
 import React, { useState } from "react";
-import ChatList from "./ChatList";
+import ChatList from "./sidebar/ChatList";
 import WelcomePane from "./WelcomePane";
 import IconBar from "./IconBar";
-import ContactList from "./ContactList";
+import ContactList from "./sidebar/ContactList";
 import SidebarContent from "./SidebarContent";
-import Settings from "./Settings";
-import ChatDetails from "./ChatDetails";
+import Settings from "./sidebar/Settings";
+import ChatDetails from "./sidebar/ChatDetails";
 import { useRef, useEffect } from 'react';
 import { ToggleSidebar } from "../redux/slices/app";
 import { useDispatch, useSelector } from "react-redux";
-import SharedMessages from "./SharedMessages";
+import SharedMessages from "./sidebar/SharedMessages";
 import { UpdateSidebarType } from "../redux/slices/app";
+import CallModal from "./Modals/CallModal";
+import VideoModal from "./Modals/VideoModal"
 
 function ChatLayout() {
   const [sideIconbar, setSideIconbar] = useState("ChatList");
   const [selectedContact, setSelectedContact] = useState(null);
   const [showProfile, setShowProfile] = useState(true);
+  const [showCallModal, setShowCallModal] = useState(false);
+
+  const selectedUser = {
+    name: "Carla Serrano",
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg"
+  };
 
   useEffect(() => {
     dispatch(UpdateSidebarType("CONTACT"));
@@ -94,11 +102,21 @@ function ChatLayout() {
                 </div>
               </div>
               <div className="d-flex align-items-center gap-4 text-secondary">
-                <i className="fas fa-search "></i>
-                <i className="fa-solid fa-video"></i>
-                <i className="fa-solid fa-phone-volume"></i>
-                <i className="fas fa-info-circle"></i>
-                <i className="fas fa-ellipsis-v"></i>
+                <i className="fas fa-search pointer"></i>
+                <button className="p-0 btn btn-white text-secondary"
+                  onClick={() => setShowCallModal(true)}>
+                  <i className="fa-solid fa-phone-volume"></i>
+                </button>
+                <CallModal user={selectedUser} show={showCallModal} setShow={setShowCallModal} />
+
+                <button className="p-0 btn btn-white text-secondary"
+                  onClick={() => setShowCallModal(true)}>
+                  <i className="fa-solid fa-video"></i>
+                </button>
+                <VideoModal user={selectedUser} show={showCallModal} setShow={setShowCallModal} />
+
+                <i className="fas fa-info-circle pointer"></i>
+                <i className="fas fa-ellipsis-v pointer"></i>
               </div>
             </div>
 
