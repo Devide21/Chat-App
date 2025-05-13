@@ -19,6 +19,7 @@ function ChatLayout() {
   const [selectedContact, setSelectedContact] = useState(null);
   const [showProfile, setShowProfile] = useState(true);
   const [showCallModal, setShowCallModal] = useState(false);
+  const [showVideoModal, setShowVideoModal] = useState(false);
 
   const selectedUser = {
     name: "Carla Serrano",
@@ -107,13 +108,14 @@ function ChatLayout() {
                   onClick={() => setShowCallModal(true)}>
                   <i className="fa-solid fa-phone-volume"></i>
                 </button>
-                <CallModal user={selectedUser} show={showCallModal} setShow={setShowCallModal} />
+                <CallModal user={selectedContact} show={showCallModal} setShow={setShowCallModal} />
 
                 <button className="p-0 btn btn-white text-secondary"
-                  onClick={() => setShowCallModal(true)}>
+                  onClick={() => setShowVideoModal(true)}>
                   <i className="fa-solid fa-video"></i>
                 </button>
-                <VideoModal user={selectedUser} show={showCallModal} setShow={setShowCallModal} />
+                <VideoModal user={selectedContact} show={showVideoModal} setShow={setShowVideoModal} />
+              
 
                 <i className="fas fa-info-circle pointer"></i>
                 <i className="fas fa-ellipsis-v pointer"></i>

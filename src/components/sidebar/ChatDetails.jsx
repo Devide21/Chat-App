@@ -39,7 +39,7 @@ function ChatDetails({ showProfile, setShowProfile }) {
 
     const dispatch = useDispatch();
     const { sidebar } = useSelector((store) => store.app);
-    
+
     return (
         <div className='vh-100 border-start border-4'>
             <div className='position-sticky p-3 border-bottom border-tertiary top-0 z-3 bg-white  pb-4'>
@@ -52,7 +52,7 @@ function ChatDetails({ showProfile, setShowProfile }) {
                                 onClick={() => {
                                     dispatch(ToggleSidebar());
                                 }}
-                                className='fa-solid fa-xmark text-white'></i>
+                                className='fa-solid fa-xmark text-white pointer'></i>
                         </div>
                         <div className="dropdown">
                             <button className="btn btn-white text-white border-0  p-3 fs-5 fw-semibold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
