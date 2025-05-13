@@ -14,6 +14,7 @@ import { UpdateSidebarType } from "../redux/slices/app";
 import CallModal from "./Modals/CallModal";
 import VideoModal from "./Modals/VideoModal"
 
+
 function ChatLayout() {
   const [sideIconbar, setSideIconbar] = useState("ChatList");
   const [selectedContact, setSelectedContact] = useState(null);
@@ -115,10 +116,17 @@ function ChatLayout() {
                   <i className="fa-solid fa-video"></i>
                 </button>
                 <VideoModal user={selectedContact} show={showVideoModal} setShow={setShowVideoModal} />
-
-
                 <i className="fas fa-info-circle pointer"></i>
-                <i className="fas fa-ellipsis-v pointer"></i>
+                <div className="dropdown">
+                  <button className="btn btn-white border-0  p-0 fs-5 fw-semibold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i className="fa-solid fa-ellipsis-vertical text-secondary"></i>
+                  </button>
+                  <ul className="dropdown-menu ">
+                    <li><a className="dropdown-item d-flex justify-content-between text-secondary border-0" href="#"><span>Archive</span><i className="fa-solid fa-download"></i></a></li>
+                    <li><a className="dropdown-item d-flex justify-content-between text-secondary border-0" href="#"><span>Mute</span><i className="fa-solid fa-microphone-slash"></i></a></li>
+                    <li><a className="dropdown-item d-flex justify-content-between text-secondary border-0" href="#"><span>Delete</span><i className="fa-regular fa-trash-can"></i></a></li>
+                  </ul>
+                </div>
               </div>
             </div>
 
