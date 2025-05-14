@@ -22,7 +22,7 @@ function ChatLayout() {
   const [showProfile, setShowProfile] = useState(true);
   const [showCallModal, setShowCallModal] = useState(false);
   const [showVideoModal, setShowVideoModal] = useState(false);
-  const [showArchived, setShowArchived] = useState(true);
+  const [showArchived, setShowArchived] = useState(false);
 
   console.log(showArchived);
 
@@ -86,7 +86,7 @@ function ChatLayout() {
         ) : (
           <SidebarContent
             sidebar={sideIconbar}
-            onSelectContact={setSelectedContact}
+            setSelectedContact={setSelectedContact}
             onShowArchived={setShowArchived}
           />
         )}

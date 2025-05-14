@@ -10,19 +10,14 @@ import Archived from "./sidebar/Archived";
 
 
 const SidebarContent = ({ sidebar, setSelectedContact, onShowArchived }) => {
-
-
+    
     switch (sidebar) {
         case "ChatList":
-            return <ChatList
-                onSelectContact={setSelectedContact}
-                onShowArchived={onShowArchived} />;
+            return <ChatList onSelectContact={setSelectedContact} onShowArchived={onShowArchived} />;
         case "ContactList":
             return <ContactList onSelectContact={setSelectedContact} />;
         case "Archived":
-            return <Archived
-                onSelectContact={setSelectedContact}
-                onShowArchived={onShowArchived} />;
+            return <Archived onSelectContact={setSelectedContact} onShowArchived={onShowArchived} />;
         case "Settings":
             return <Settings />;
         case "BookmarkList":
