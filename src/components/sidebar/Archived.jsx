@@ -35,7 +35,7 @@ function Archived({ onSelectContact, onShowArchived }) {
                 </div>
                 <div style={{ overflow: "auto", height: "78vh" }}>
                     <small className="d-flex px-3 py-2 text-muted small fw-lighter text-start"
-                        onSelectContact={() => onShowArchived(false)}
+                        onClick={() => onShowArchived(false)}
                     >Archived</small>
                     <div className="px-3">
                         {filterContacts(favourites).map((contact) => (
@@ -57,7 +57,9 @@ function Archived({ onSelectContact, onShowArchived }) {
                         ))}
                     </div>
 
-                    <div className="px-3 py-2 text-success small pointer">Chats<i className="ms-2 fa-solid fa-download"></i></div>
+                    <div className="px-3 py-2 text-success small pointer"
+                    onClick={() => onShowArchived(false)}
+                    >Chats<i className="ms-2 fa-solid fa-download"></i></div>
                 </div>
             </div>
         </>

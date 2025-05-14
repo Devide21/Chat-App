@@ -8,19 +8,21 @@ import ProfileCard from "./sidebar/ProfileCard";
 import WelcomePane from "./WelcomePane";
 import Archived from "./sidebar/Archived";
 
-const SidebarContent = ({ sidebar, setSelectedContact, setShowArchived }) => {
-    console.log(setShowArchived);
+
+const SidebarContent = ({ sidebar, setSelectedContact, onShowArchived }) => {
 
 
     switch (sidebar) {
         case "ChatList":
-            return <ChatList onSelectContact={setSelectedContact} onShowArchived={setShowArchived} />;
+            return <ChatList
+                onSelectContact={setSelectedContact}
+                onShowArchived={onShowArchived} />;
         case "ContactList":
             return <ContactList onSelectContact={setSelectedContact} />;
         case "Archived":
-            return <Archived onSelectContact={setSelectedContact}
-                onShowArchived={setShowArchived}
-            />;
+            return <Archived
+                onSelectContact={setSelectedContact}
+                onShowArchived={onShowArchived} />;
         case "Settings":
             return <Settings />;
         case "BookmarkList":
@@ -32,8 +34,9 @@ const SidebarContent = ({ sidebar, setSelectedContact, setShowArchived }) => {
         case "ProfileCard":
             return <ProfileCard />;
         default:
-            return <ChatList onSelectContact={setSelectedContact} />;
+            return <ChatList onSelectContact={setSelectedContact} onShowArchived={onShowArchived} />;
     }
 };
+
 
 export default SidebarContent;

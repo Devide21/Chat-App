@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { FaSearch, FaPlus } from "react-icons/fa";
 import { favourites, directMessages, channels } from "./contacts";
 
-function ChatList({ onSelectContact }) {
+function ChatList({ onSelectContact, onShowArchived }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedIcon, setSelectedIcon] = useState("");
-  const [showArchived, setShowArchived] = useState(false);
-  
 
 
   const filterContacts = (list) =>
@@ -99,7 +97,7 @@ function ChatList({ onSelectContact }) {
           </div>
 
           <div className="px-3 py-2 text-success small pointer"
-          onClick={() => setShowArchived(!showArchived)}
+            onClick={() => onShowArchived(true)}
           >Archived Contacts<i className="ms-2 fa-solid fa-download"></i></div>
         </div>
       </div>

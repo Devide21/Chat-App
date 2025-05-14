@@ -22,7 +22,10 @@ function ChatLayout() {
   const [showProfile, setShowProfile] = useState(true);
   const [showCallModal, setShowCallModal] = useState(false);
   const [showVideoModal, setShowVideoModal] = useState(false);
-  const [showArchived, setShowArchived] = useState(false);
+  const [showArchived, setShowArchived] = useState(true);
+
+  console.log(showArchived);
+
 
   useEffect(() => {
     dispatch(UpdateSidebarType("CONTACT"));
@@ -73,15 +76,22 @@ function ChatLayout() {
   const dispatch = useDispatch();
   const { sidebar } = useSelector((store) => store.app);
 
-
-
   return (
     <div className="d-flex main-body">
       <div className="d-flex" style={{ borderRight: "1px solid #ddd" }}>
         <IconBar onSelectedIcon={handleSidebarChange} />
-        <SidebarContent sidebar={sideIconbar} setSelectedContact={setSelectedContact} onSelectedIcon={handleSidebarChange} onShowArchived={handleArchiveChange}
-        />
-        {/* <Archived sidebar={sideIconbar} setSelectedContact={setSelectedContact} /> */}
+        {showArchived ? (
+          <Archived onSelectContact={setSelectedContact}
+            onShowArchived={setShowArchived} />
+        ) : (
+          <SidebarContent
+            sidebar={sideIconbar}
+            onSelectContact={setSelectedContact}
+            onShowArchived={setShowArchived}
+          />
+        )}
+        {/* <Archived onSelectContact={setSelectedContact}
+          onShowArchived={setShowArchived} /> */}
       </div>
       <div className="d-flex flex-column vh-100" style={{ width: "100%" }}>
         {selectedContact ? (
