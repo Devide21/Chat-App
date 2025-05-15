@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { favourites, directMessages, channels } from "./contacts";
+import { contacts, favourites } from "./contacts";
 
 function Archived({ onSelectContact, onShowArchived }) {
     const [searchTerm, setSearchTerm] = useState("");
@@ -38,27 +38,30 @@ function Archived({ onSelectContact, onShowArchived }) {
                         onClick={() => onShowArchived(false)}
                     >Archived</small>
                     <div className="px-3">
-                        {filterContacts(favourites).map((contact) => (
-                            <div
-                                key={contact.id}
-                                className="d-flex align-items-center mb-2"
-                                onClick={() => onSelectContact(contact)}
-                                style={{ cursor: "pointer" }}
-                            >
-                                <div className={` ${contact.online ? 'active-dot' : 'away-dot'}`}></div>
-                                <img
-                                    src={contact.avatar}
-                                    alt={contact.name}
-                                    className="rounded-circle me-2"
-                                    style={{ width: "32px", height: "32px" }}
-                                />
-                                <span className="small fw-medium">{contact.name}</span>
-                            </div>
+                        {filterContacts(contacts).map((contact) => (
+                            contact.isArchived && (
+                                <div
+                                    key={contact.id}
+                                    className="d-flex align-items-center mb-2"
+                                    onClick={() => onSelectContact(contact)}
+                                    style={{ cursor: "pointer" }}
+                                >
+                                    <div className={` ${contact.online ? 'active-dot' : 'away-dot'}`}></div>
+                                    {contact.avatar ? (
+                                        <img src={contact.avatar} alt={contact.name} className="rounded-circle me-2" style={{ width: 36, height: 36 }} />
+                                    ) : (
+                                        <div className="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center me-2" style={{ width: 36, height: 36, fontSize: 12 }}>
+                                            {contact.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                                        </div>
+                                    )}
+                                    <span className="small fw-medium">{contact.name}</span>
+                                </div>
+                            )
                         ))}
                     </div>
 
                     <div className="px-3 py-2 text-success small pointer"
-                    onClick={() => onShowArchived(false)}
+                        onClick={() => onShowArchived(false)}
                     >Chats<i className="ms-2 fa-solid fa-download"></i></div>
                 </div>
             </div>

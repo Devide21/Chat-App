@@ -2,7 +2,7 @@ import React from "react";
 import { FaCommentDots } from "react-icons/fa";
 
 const WelcomePane = () => (
-  <div className="d-flex flex-column justify-content-center align-items-center text-center bg-light flex-grow-1 welcome-pane" >
+  <div className="d-flex flex-column justify-content-center align-items-center text-center bg-light flex-grow-1 welcome-pane chat-background" >
     <div className="text-success display-3 mb-3">
       <FaCommentDots />
     </div>

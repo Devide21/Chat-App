@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaSearch, FaPlus } from "react-icons/fa";
-import { favourites, directMessages, channels } from "./contacts";
+import { contacts } from "./contacts";
 
 function ChatList({ onSelectContact, onShowArchived }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -38,22 +38,24 @@ function ChatList({ onSelectContact, onShowArchived }) {
         <div style={{ overflow: "auto", height: "78vh" }}>
           <small className="d-flex px-3 py-2 text-muted small fw-lighter text-start">FAVOURITES</small>
           <div className="px-3">
-            {filterContacts(favourites).map((contact) => (
-              <div
-                key={contact.id}
-                className="d-flex align-items-center mb-2"
-                onClick={() => onSelectContact(contact)}
-                style={{ cursor: "pointer" }}
-              >
-                <div className={` ${contact.online ? 'active-dot' : 'away-dot'}`}></div>
-                <img
-                  src={contact.avatar}
-                  alt={contact.name}
-                  className="rounded-circle me-2"
-                  style={{ width: "32px", height: "32px" }}
-                />
-                <span className="small fw-medium">{contact.name}</span>
-              </div>
+            {filterContacts(contacts).map((contact) => (
+              contact.isFavourite && (
+                <div
+                  key={contact.id}
+                  className="d-flex align-items-center mb-2"
+                  onClick={() => onSelectContact(contact)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <div className={` ${contact.online ? 'active-dot' : 'away-dot'}`}></div>
+                  {contact.avatar ? (
+                    <img src={contact.avatar} alt={contact.name} className="rounded-circle me-2" style={{ width: 36, height: 36 }} />
+                  ) : (
+                    <div className="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center me-2" style={{ width: 36, height: 36, fontSize: 12 }}>
+                      {contact.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                    </div>
+                  )}
+                  <span className="small fw-medium">{contact.name}</span>
+                </div>)
             ))}
           </div>
 
@@ -62,21 +64,26 @@ function ChatList({ onSelectContact, onShowArchived }) {
             <button className="btn text-success btn-sm rounded-2" style={{ padding: "7px 12px", backgroundColor: "rgb(78 172 109 / 28%)" }}>+</button>
           </div>
           <div className="px-3">
-            {filterContacts(directMessages).map((contact) => (
-              <div
-                key={contact.id}
-                className="d-flex align-items-center mb-2"
-                onClick={() => onSelectContact(contact)}
-                style={{ cursor: "pointer" }}
-              >
-                <img
-                  src={contact.avatar}
-                  alt={contact.name}
-                  className="rounded-circle me-2"
-                  style={{ width: "32px", height: "32px" }}
-                />
-                <span className="small">{contact.name}</span>
-              </div>
+            {filterContacts(contacts).map((contact) => (
+              contact.isFavourite === false && (
+                //  && contact.isGroup === false && !contact.isArchived && 
+
+                <div
+                  key={contact.id}
+                  className="d-flex align-items-center mb-2"
+                  onClick={() => onSelectContact(contact)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {contact.avatar ? (
+                    <img src={contact.avatar} alt={contact.name} className="rounded-circle me-2" style={{ width: 36, height: 36 }} />
+                  ) : (
+                    <div className="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center me-2" style={{ width: 36, height: 36, fontSize: 12 }}>
+                      {contact.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                    </div>
+                  )}
+                  <span className="small">{contact.name}</span>
+                </div>
+              )
             ))}
           </div>
 
@@ -85,14 +92,23 @@ function ChatList({ onSelectContact, onShowArchived }) {
             <button className="btn text-success btn-sm rounded-2" style={{ padding: "7px 12px", backgroundColor: "rgb(78 172 109 / 28%)" }}>+</button>
           </div>
           <div className="px-3 text-muted text-start">
-            {channels.map((channel, idx) => (
-              <div
-                key={idx}
-                className="mb-2"
-                onClick={() => onSelectContact({ name: channel, id: idx })}
-              >
-                <span className="fw-medium"># {channel}</span>
-              </div>
+            {contacts.map((contact, idx) => (
+              contact.isGroup && !contact.isArchived && (
+                <div
+                  key={idx}
+                  className="mb-2 d-flex align-items-center"
+                  onClick={() => onSelectContact({ name: contact.name, id: idx })}
+                >
+                  {contact.avatar ? (
+                    <img src={contact.avatar} alt={contact.name} className="rounded-circle me-2" style={{ width: 36, height: 36 }} />
+                  ) : (
+                    <div className="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center me-2" style={{ width: 36, height: 36, fontSize: 12 }}>
+                      {contact.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                    </div>
+                  )}
+                  <span className="fw-medium"># {contact.name}</span>
+                </div>
+              )
             ))}
           </div>
 

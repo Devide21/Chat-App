@@ -1,18 +1,7 @@
 import React, { useState } from 'react';
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 import { FaSearch } from 'react-icons/fa';
-
-const contacts = [
-    { id: 1, name: "Alvarez Luna", avatar: null },
-    { id: 2, name: "Carla Serrano", avatar: "https://i.pravatar.cc/36?u=carla" },
-    { id: 3, name: "Brain o Conner", avatar: "https://i.pravatar.cc/36?u=braino" },
-    { id: 4, name: "Dean Vargas", avatar: null },
-    { id: 5, name: "Donaldson Riddle", avatar: "https://i.pravatar.cc/36?u=donaldson" },
-    { id: 6, name: "Daniels Webster", avatar: null },
-    { id: 8, name: "Earnestine Sears", avatar: "https://i.pravatar.cc/36?u=earnestine" },
-    { id: 9, name: "Earnestine Sears", avatar: "https://i.pravatar.cc/36?u=earnestine" },
-    { id: 10, name: "Earnestine Sears", avatar: "https://i.pravatar.cc/36?u=earnestine" },
-];
+import { contacts as allContacts } from "./contacts"; // renamed to avoid conflict
 
 const groupContacts = (filteredList) => {
     const grouped = {};
@@ -27,11 +16,15 @@ const groupContacts = (filteredList) => {
 const ContactList = ({ onSelectContact }) => {
     const [searchTerm, setSearchTerm] = useState("");
 
-    const filteredContacts = contacts.filter(contact =>
+    const individualContacts = allContacts.filter(contact => contact.isGroup === false);
+
+
+    const filteredContacts = individualContacts.filter(contact =>
         contact.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     const groupedContacts = groupContacts(filteredContacts);
+
 
     return (
         <>
@@ -63,8 +56,14 @@ const ContactList = ({ onSelectContact }) => {
                                 <span className="px-2 text-success">{letter}</span>
                                 <span className="flex-grow-1 border-bottom" />
                             </div>
+
                             {groupedContacts[letter].map(({ id, name, avatar }) => (
-                                <div key={id} className="d-flex align-items-center justify-content-between py-2">
+                                <div
+                                    key={id}
+                                    className="d-flex align-items-center justify-content-between py-2"
+                                    role="button"
+                                    onClick={() => onSelectContact({ id, name, avatar })}
+                                >
                                     <div className="d-flex align-items-center">
                                         {avatar ? (
                                             <img src={avatar} alt={name} className="rounded-circle me-2" style={{ width: 36, height: 36 }} />
@@ -73,22 +72,20 @@ const ContactList = ({ onSelectContact }) => {
                                                 {name.split(' ').map(n => n[0]).join('').toUpperCase()}
                                             </div>
                                         )}
-                                        <span
-                                            onClick={() => onSelectContact(name)}
-                                        >{name}</span>
+                                        <span>{name}</span>
                                     </div>
                                     <div className="dropdown">
-                                        <button className="btn btn-white border-0 " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <button className="btn btn-white border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <ThreeDotsVertical />
                                         </button>
-                                        <ul className="dropdown-menu ">
+                                        <ul className="dropdown-menu">
                                             <li><a className="dropdown-item d-flex justify-content-between text-secondary border-0" href="#"><span>Edit</span><i className="fa-solid fa-pencil"></i></a></li>
                                             <li><a className="dropdown-item d-flex justify-content-between text-secondary border-0" href="#"><span>Block</span><i className="fa-solid fa-ban"></i></a></li>
                                             <li><a className="dropdown-item d-flex justify-content-between text-secondary border-0" href="#"><span>Remove</span><i className="fa-regular fa-trash-can"></i></a></li>
                                         </ul>
                                     </div>
-
                                 </div>
+
                             ))}
                         </div>
                     ))}
@@ -98,5 +95,5 @@ const ContactList = ({ onSelectContact }) => {
         </>
     );
 };
-// 
+
 export default ContactList;

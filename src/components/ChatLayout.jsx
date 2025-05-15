@@ -24,9 +24,6 @@ function ChatLayout() {
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [showArchived, setShowArchived] = useState(false);
 
-  console.log(showArchived);
-
-
   useEffect(() => {
     dispatch(UpdateSidebarType("CONTACT"));
   }, []);
@@ -102,9 +99,15 @@ function ChatLayout() {
             <div className="d-flex align-items-center justify-content-between px-3 py-2 border-bottom bg-light">
               <div className="d-flex align-items-center">
 
-                <div className="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center me-2" style={{ width: 40, height: 40 }}>
+                <div className="rounded-circle text-white d-flex align-items-center justify-content-center me-2" style={{ width: 40, height: 40 }}>
                   <div className={` ${selectedContact.online ? 'active-dot' : 'away-dot'}`}></div>
-                  <img src={selectedContact.avatar} alt={selectedContact.name} className="rounded-circle" style={{ width: 40, height: 40 }} />
+                  {selectedContact.avatar ? (
+                    <img src={selectedContact.avatar} alt={selectedContact.name} className="rounded-circle me-2" style={{ width: 40, height: 40 }} />
+                  ) : (
+                    <div className="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center me-1" style={{ width: 40, height: 40, fontSize: 12 }}>
+                      {selectedContact.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                    </div>
+                  )}
                 </div>
 
                 <div className="text-start">

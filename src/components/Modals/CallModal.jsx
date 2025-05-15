@@ -35,12 +35,13 @@ function CallModal({ user, show, setShow }) {
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content text-center" style={{ borderRadius: "15px", overflow: "hidden" }}>
                     <div className="modal-body py-4 pb-0">
-                        <img
-                            src={user?.avatar || "https://via.placeholder.com/100"}
-                            alt="Avatar"
-                            className="rounded-circle mb-3"
-                            style={{ width: "100px", height: "100px", objectFit: "cover", border: "4px solid #f0f0f0" }}
-                        />
+                        {user.avatar ? (
+                            <img src={user.avatar} alt={user.name} className="rounded-circle me-2" style={{ width: 100, height: 100 }} />
+                        ) : (
+                            <div className="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center me-2" style={{ width: 100, height: 100, fontSize: 45, position: "relative", left: "175px" }}>
+                                {user.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                            </div>
+                        )}
 
                         <div className="d-flex justify-content-center gap-4 mt-3">
                             <div>
