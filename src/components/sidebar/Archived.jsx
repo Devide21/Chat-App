@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { contacts, favourites } from "./contacts";
+import { contacts } from "./contacts";
 
 function Archived({ onSelectContact, onShowArchived }) {
     const [searchTerm, setSearchTerm] = useState("");

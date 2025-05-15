@@ -35,11 +35,11 @@ function CallModal({ user, show, setShow }) {
             <div className="modal-dialog modal-dialog-centered videoCall-modal">
                 <div className="modal-content text-center" style={{ borderRadius: "9px", overflow: "hidden", height: "500px" }}>
                     <div className="modal-body p-0">
-                        <img
-                            src={user?.avatar || "https://via.placeholder.com/100"}
-                            alt="Avatar"
-                            className=""
-                        />
+                        {user.avatar ? (
+                            <img src={user.avatar} alt={user.name} className="rounded-circle me-2" style={{ width: 100, height: 100 }} />
+                        ) : (
+                            <img src="src\assets\user-dummy-img.user-video-modal.jpg" alt={user.name} className="rounded-circle me-2" />
+                        )}
 
                         <div className="d-flex justify-content-center gap-4 mt-3 position-absolute z-3 btn-collection">
                             <div>

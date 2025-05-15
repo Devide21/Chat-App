@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { FaSearch, FaPlus } from "react-icons/fa";
 import { contacts } from "./contacts";
+import AddMessage from "../Modals/AddMessage";
 
 function ChatList({ onSelectContact, onShowArchived }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedIcon, setSelectedIcon] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [selectedContact, setSelectedContact] = useState(null);
 
 
   const filterContacts = (list) =>
@@ -61,11 +64,32 @@ function ChatList({ onSelectContact, onShowArchived }) {
 
           <div className="px-3 py-2 d-flex justify-content-between align-items-center text-muted small fw-lighter-">
             <small>DIRECT MESSAGES</small>
-            <button className="btn text-success btn-sm rounded-2" style={{ padding: "7px 12px", backgroundColor: "rgb(78 172 109 / 28%)" }}>+</button>
+
+            <button
+              onClick={() => setShowModal(true)}
+              className="btn text-success btn-sm rounded-2" style={{ padding: "7px 12px", backgroundColor: "rgb(78 172 109 / 28%)" }}>+</button>
           </div>
+          {showModal && (
+            <AddMessage
+              show={showModal}
+              setShow={setShowModal}
+              onSelectContact={(contact) => {
+                console.log("Selected contact:", contact);
+                setSelectedContact(contact);
+                setShowModal(false);
+              }}
+            />
+          )}
+
+          {selectedContact && (
+            <div className="mt-3">
+              Selected Contact: <strong>{selectedContact.name}</strong>
+            </div>
+          )}
+
           <div className="px-3">
             {filterContacts(contacts).map((contact) => (
-              contact.isFavourite === false && (
+              contact.isDirectMessage && contact.isGroup === false && (
                 //  && contact.isGroup === false && !contact.isArchived && 
 
                 <div

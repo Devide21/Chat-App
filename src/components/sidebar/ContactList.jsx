@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 import { FaSearch } from 'react-icons/fa';
-import { contacts as allContacts } from "./contacts"; // renamed to avoid conflict
+import { contacts as allContacts } from "./contacts";
 
 const groupContacts = (filteredList) => {
     const grouped = {};

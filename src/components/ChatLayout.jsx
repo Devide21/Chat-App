@@ -22,6 +22,7 @@ function ChatLayout() {
   const [showProfile, setShowProfile] = useState(true);
   const [showCallModal, setShowCallModal] = useState(false);
   const [showVideoModal, setShowVideoModal] = useState(false);
+  const [showAddMessageModal, setShowAddMessageModal] = useState(false);
   const [showArchived, setShowArchived] = useState(false);
 
   useEffect(() => {
@@ -132,7 +133,11 @@ function ChatLayout() {
                   <i className="fa-solid fa-video"></i>
                 </button>
                 <VideoModal user={selectedContact} show={showVideoModal} setShow={setShowVideoModal} />
-                <i className="fas fa-info-circle pointer"></i>
+                <i
+                  onClick={() => {
+                    dispatch(ToggleSidebar());
+                  }}
+                  className="fas fa-info-circle pointer"></i>
                 <div className="dropdown">
                   <button className="btn btn-white border-0  p-0 fs-5 fw-semibold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i className="fa-solid fa-ellipsis-vertical text-secondary"></i>

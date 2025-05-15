@@ -378,7 +378,9 @@ button:active :hover {
 .videoCall-modal {
   min-height: 450px;
   overflow: hidden;
-  img{
+
+  img {
+    object-fit: cover;
     height: 410px;
     width: -webkit-fill-available;
   }
@@ -397,4 +399,16 @@ button:active :hover {
   bottom: 50px;
   left: 133px;
 
+}
+
+/* ++++++++++++++++++ Add Message Modal ++++++++++++++++ */
+.message-modal::after {
+  display: block;
+  content: "";
+  height: 2px;
+  width: 93%;
+  background-color: #e9ecef;
+  position: relative;
+  top: -13px;
+  left: 26px;
 }
