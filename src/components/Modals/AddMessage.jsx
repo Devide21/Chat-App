@@ -26,7 +26,7 @@ function AddMessage({ show, setShow, onSelectContact }) {
             style={{ background: "#00000036" }}
             tabIndex="-1">
             <div className="modal-dialog modal-dialog-centered" >
-                <div className="modal-content rounded-3" style={{ height: "500px" }}>
+                <div className="modal-content rounded-3" style={{ height: "520px" }}>
                     <div className="modal-header bg-success text-white rounded-top">
                         <h5 className="modal-title">Contacts</h5>
                         <button

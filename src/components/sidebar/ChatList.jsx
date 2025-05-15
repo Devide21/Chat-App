@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { FaSearch, FaPlus } from "react-icons/fa";
 import { contacts } from "./contacts";
 import AddMessage from "../Modals/AddMessage";
+import AddGroup from "../Modals/AddGroup";
 
 function ChatList({ onSelectContact, onShowArchived }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedIcon, setSelectedIcon] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const [showAddMessageModal, setShowAddMessageModal] = useState(false);
+  const [showAddGroupModal, setShowAddGroupModal] = useState(false);
   const [selectedContact, setSelectedContact] = useState(null);
 
 
@@ -39,10 +41,10 @@ function ChatList({ onSelectContact, onShowArchived }) {
           </div>
         </div>
         <div style={{ overflow: "auto", height: "78vh" }}>
-          <small className="d-flex px-3 py-2 text-muted small fw-lighter text-start">FAVOURITES</small>
-          <div className="px-3">
+          <small className="d-flex px-3 py-2 text-muted small  text-start">FAVOURITES</small>
+          <div className="px-4 small">
             {filterContacts(contacts).map((contact) => (
-              contact.isFavourite && (
+              contact.isFavourite && contact.isDirectMessage === false && (
                 <div
                   key={contact.id}
                   className="d-flex align-items-center mb-2"
@@ -66,17 +68,17 @@ function ChatList({ onSelectContact, onShowArchived }) {
             <small>DIRECT MESSAGES</small>
 
             <button
-              onClick={() => setShowModal(true)}
+              onClick={() => setShowAddMessageModal(true)}
               className="btn text-success btn-sm rounded-2" style={{ padding: "7px 12px", backgroundColor: "rgb(78 172 109 / 28%)" }}>+</button>
           </div>
-          {showModal && (
+          {showAddMessageModal && (
             <AddMessage
-              show={showModal}
-              setShow={setShowModal}
+              show={showAddMessageModal}
+              setShow={setShowAddMessageModal}
               onSelectContact={(contact) => {
                 console.log("Selected contact:", contact);
                 setSelectedContact(contact);
-                setShowModal(false);
+                setShowAddMessageModal(false);
               }}
             />
           )}
@@ -87,14 +89,14 @@ function ChatList({ onSelectContact, onShowArchived }) {
             </div>
           )}
 
-          <div className="px-3">
+          <div className="px-4">
             {filterContacts(contacts).map((contact) => (
               contact.isDirectMessage && contact.isGroup === false && (
                 //  && contact.isGroup === false && !contact.isArchived && 
 
                 <div
                   key={contact.id}
-                  className="d-flex align-items-center mb-2"
+                  className="d-flex align-items-center mb-2 small"
                   onClick={() => onSelectContact(contact)}
                   style={{ cursor: "pointer" }}
                 >
@@ -113,14 +115,35 @@ function ChatList({ onSelectContact, onShowArchived }) {
 
           <div className="px-3 py-2 d-flex justify-content-between align-items-center text-muted small fw-lighter-">
             <small>CHANNELS</small>
-            <button className="btn text-success btn-sm rounded-2" style={{ padding: "7px 12px", backgroundColor: "rgb(78 172 109 / 28%)" }}>+</button>
+            <button
+              onClick={() => setShowAddGroupModal(true)}
+              className="btn text-success btn-sm rounded-2" style={{ padding: "7px 12px", backgroundColor: "rgb(78 172 109 / 28%)" }}>+</button>
+
+            {showAddGroupModal && (
+              <AddGroup
+                show={showAddGroupModal}
+                setShow={setShowAddGroupModal}
+                onSelectContact={(contact) => {
+                  console.log("Selected contact:", contact);
+                  setSelectedContact(contact);
+                  setShowAddGroupModal(false);
+                }}
+              />
+            )}
+
+            {selectedContact && (
+              <div className="mt-3">
+                Selected Contact: <strong>{selectedContact.name}</strong>
+              </div>
+            )}
+
           </div>
-          <div className="px-3 text-muted text-start">
+          <div className="px-4 text-muted text-start">
             {contacts.map((contact, idx) => (
               contact.isGroup && !contact.isArchived && (
                 <div
                   key={idx}
-                  className="mb-2 d-flex align-items-center"
+                  className="mb-2 d-flex align-items-center small"
                   onClick={() => onSelectContact({ name: contact.name, id: idx })}
                 >
                   {contact.avatar ? (
@@ -136,11 +159,11 @@ function ChatList({ onSelectContact, onShowArchived }) {
             ))}
           </div>
 
-          <div className="px-3 py-2 text-success small pointer"
+          <small className="px-3 py-2 text-success small pointer"
             onClick={() => onShowArchived(true)}
-          >Archived Contacts<i className="ms-2 fa-solid fa-download"></i></div>
+          >Archived Contacts<i className="ms-2 fa-solid fa-download"></i></small>
         </div>
-      </div>
+      </div >
     </>
   );
 }
