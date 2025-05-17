@@ -93,3 +93,16 @@ body #root {
 .form-control:focus {
   box-shadow: none;
 }
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.form-control:focus {
+  box-shadow: none !important;
+  border-color: #ced4da;
+  /* default border color, optional */
+}

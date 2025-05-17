@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { contacts as allContacts } from "../sidebar/contacts";
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -22,17 +22,27 @@ function AddMessage({ show, setShow, onSelectContact }) {
     defaultValues,
   });
 
-  const {
-    handleSubmit,
-  } = methods;
+  const { handleSubmit } = methods;
+  
 
   const onSubmit = async (data) => {
     try {
-      console.log("Selected User:", data.user);
-      if (onSelectContact) onSelectContact(data.user);
+      const newContact = {
+        id: Date.now(), // Or use uuid
+        name: data.user.name,
+        avatar: data.user.avatar || null,
+        status: data.user.status || null,
+        isFavourite: false,
+        isGroup: false,
+        isArchived: false,
+        isDirectMessage: true,
+      };
+
+      // Send to parent to update its contact state
+      onSelectContact(newContact);
       setShow(false);
     } catch (error) {
-      console.error(error);
+      console.error("Error adding contact:", error);
     }
   };
 
@@ -40,7 +50,7 @@ function AddMessage({ show, setShow, onSelectContact }) {
     <div className={`modal shadow fade ${show ? "show d-block" : ""}`}
       style={{ background: "#00000036" }}
       tabIndex="-1">
-      <div className="modal-dialog modal-dialog-centered" >
+      <div className="modal-dialog modal-dialog-centered">
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <div className="modal-content rounded-3" style={{ height: "400px" }}>
             <div className="modal-header bg-success text-white rounded-top">

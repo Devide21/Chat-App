@@ -29,14 +29,31 @@ function AddGroup({ show, setShow, onSelectGroup }) {
     handleSubmit,
   } = methods;
 
+
   const onSubmit = async (data) => {
     try {
-      console.log("Group form data:", { ...data, description });
-      setShow(false); 
+      const newContact = {
+        id: allContacts.length + 1,
+        name: data.title,
+        avatar: null,
+        status: null,
+        isFavourite: false,
+        isGroup: true,
+        isArchived: false,
+        isDirectMessage: false,
+        description: data.description || '',
+        members: data.members || [],
+      };
+
+      allContacts.push(newContact);
+      console.log("Updated contacts:", allContacts);
+
+      setShow(false);
     } catch (error) {
       console.error(error);
     }
   };
+
 
   return (
     <div className={`modal shadow fade ${show ? "show d-block" : ""}`} style={{ background: "#00000036" }} tabIndex="-1">
@@ -54,7 +71,7 @@ function AddGroup({ show, setShow, onSelectGroup }) {
                 <RHFTextField name="title" label="Title" placeholder="Enter title" />
               </div>
               <div className="mb-2 d-flex flex-column text-start">
-                <label>Group Members</label>
+                <label className='mb-2'>Group Members</label>
                 <RHFAutoComplete
                   name="members"
                   label="Members"
