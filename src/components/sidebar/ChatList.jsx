@@ -83,11 +83,6 @@ function ChatList({ onSelectContact, onShowArchived }) {
             />
           )}
 
-          {selectedContact && (
-            <div className="mt-3">
-              Selected Contact: <strong>{selectedContact.name}</strong>
-            </div>
-          )}
 
           <div className="px-4">
             {filterContacts(contacts).map((contact) => (
@@ -123,7 +118,7 @@ function ChatList({ onSelectContact, onShowArchived }) {
               <AddGroup
                 show={showAddGroupModal}
                 setShow={setShowAddGroupModal}
-                onSelectContact={(contact) => {
+                onSelectGroup={(contact) => {
                   console.log("Selected contact:", contact);
                   setSelectedContact(contact);
                   setShowAddGroupModal(false);
@@ -131,11 +126,6 @@ function ChatList({ onSelectContact, onShowArchived }) {
               />
             )}
 
-            {selectedContact && (
-              <div className="mt-3">
-                Selected Contact: <strong>{selectedContact.name}</strong>
-              </div>
-            )}
 
           </div>
           <div className="px-4 text-muted text-start">

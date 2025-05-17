@@ -3,6 +3,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 RHFTextField.propTypes = {
     name: propTypes.string.isRequired,
+    label: propTypes.string,
     helperText: propTypes.node,
     InputProps: propTypes.object,
 };
@@ -23,7 +24,7 @@ export default function RHFTextField({ name, helperText, InputProps, ...other })
                 };
 
                 return (
-                    <div className="position-relative">
+                    <div className="position-relative mb-2">
                         <input {...finalProps} />
                         {InputProps && InputProps.endAdornment && !error && (
                             <div

@@ -26,7 +26,7 @@ function CallModal({ user, show, setShow }) {
 
     return (
         <div
-            className="modal fade"
+            className="modal shadow fade"
             tabIndex="-1"
             ref={modalRef}
             aria-labelledby="callModalLabel"

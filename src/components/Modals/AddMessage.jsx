@@ -1,89 +1,89 @@
 import React, { useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
 import { contacts as allContacts } from "../sidebar/contacts";
-
-const groupContacts = (filteredList) => {
-    const grouped = {};
-    filteredList.forEach(contact => {
-        const letter = contact.name.charAt(0).toUpperCase();
-        if (!grouped[letter]) grouped[letter] = [];
-        grouped[letter].push(contact);
-    });
-    return grouped;
-};
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import FormProvider from '/src/hookForm/FormProvider.jsx';
+import RHFAutoComplete from '../../hookForm/RHFAutoComplete';
 
 function AddMessage({ show, setShow, onSelectContact }) {
-    const [searchTerm, setSearchTerm] = useState("");
+  const individualContacts = allContacts.filter(c => !c.isGroup);
 
-    const individualContacts = allContacts.filter(c => !c.isGroup);
-    const filteredContacts = individualContacts.filter(c =>
-        c.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    const groupedContacts = groupContacts(filteredContacts);
+  const DirectMessageSchema = Yup.object().shape({
+    user: Yup.mixed().required("User is required"),
+  });
 
-    return (
-        <div className={`modal fade ${show ? "show d-block" : ""}`}
-            style={{ background: "#00000036" }}
-            tabIndex="-1">
-            <div className="modal-dialog modal-dialog-centered" >
-                <div className="modal-content rounded-3" style={{ height: "520px" }}>
-                    <div className="modal-header bg-success text-white rounded-top">
-                        <h5 className="modal-title">Contacts</h5>
-                        <button
-                            type="button"
-                            className="btn-close"
-                            onClick={() => setShow(false)}
-                        ></button>
-                    </div>
+  const defaultValues = {
+    user: null,
+  };
 
-                    <div className="modal-body px-3 pt-3">
-                        <div className="input-group mb-3">
-                            <span className="input-group-text bg-white border-end-0">
-                                <FaSearch />
-                            </span>
-                            <input
-                                type="text"
-                                className="form-control border-start-0"
-                                placeholder="Search here.."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
-                        </div>
+  const methods = useForm({
+    resolver: yupResolver(DirectMessageSchema),
+    defaultValues,
+  });
 
-                        <div style={{ maxHeight: "300px", overflowY: "auto", textAlign: "start" }}>
-                            {Object.keys(groupedContacts).sort().map(letter => (
-                                <div key={letter}>
-                                    <div className="message-modal text-success ps-2">{letter}</div>
-                                    {groupedContacts[letter].map(({ id, name }) => (
-                                        <div
-                                            key={id}
-                                            className="py-2 px-3"
-                                            role="button"
-                                            onClick={() => onSelectContact({ id, name })}
-                                        >
-                                            {name}
-                                        </div>
-                                    ))}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+  const {
+    handleSubmit,
+  } = methods;
 
-                    <div className="modal-footer">
-                        <button
-                            className="btn btn-light text-success"
-                            onClick={() => setShow(false)}
-                        >
-                            Cancel
-                        </button>
-                        <button className="btn btn-success">
-                            <i className="bx bxs-send"></i>
-                        </button>
-                    </div>
-                </div>
+  const onSubmit = async (data) => {
+    try {
+      console.log("Selected User:", data.user);
+      if (onSelectContact) onSelectContact(data.user);
+      setShow(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <div className={`modal shadow fade ${show ? "show d-block" : ""}`}
+      style={{ background: "#00000036" }}
+      tabIndex="-1">
+      <div className="modal-dialog modal-dialog-centered" >
+        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+          <div className="modal-content rounded-3" style={{ height: "400px" }}>
+            <div className="modal-header bg-success text-white rounded-top">
+              <h5 className="modal-title">Select Contact</h5>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setShow(false)}
+              ></button>
             </div>
-        </div>
-    );
+
+            <div className="modal-body px-3 pt-3">
+              <RHFAutoComplete
+                name="user"
+                label="Search Contact"
+                options={individualContacts}
+                getOptionLabel={(option) => option.name}
+                isOptionEqualToValue={(option, value) => option.id === value.id}
+                renderOption={(props, option) => (
+                  <li {...props} key={option.id}>
+                    {option.name}
+                  </li>
+                )}
+              />
+            </div>
+
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-light text-success"
+                onClick={() => setShow(false)}
+              >
+                Cancel
+              </button>
+              <button type="submit" className="btn btn-success">
+                <i className="bx bxs-send"></i>
+              </button>
+            </div>
+          </div>
+        </FormProvider>
+      </div>
+    </div>
+  );
 }
 
 export default AddMessage;
