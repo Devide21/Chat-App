@@ -11,11 +11,12 @@ function IconBar({ onSelectedIcon }) {
                 {pages.map((page) => (
                     <div key={page.id}
                         className="text-center py-2">
-                        <i className={` ${selectedIcon === page.component ? 'text-success' : 'text-white'} ${page.icon} `}
+                        <i className={`position-relative ${selectedIcon === page.component ? 'text-success' : 'text-secondary'} ${page.icon} `}
                             onClick={() => {
                                 setSelectedIcon(page.component);
                                 onSelectedIcon(page.component);
                             }}>
+                            <div className={`side-icon ${selectedIcon === page.component ? 'bg-success' : 'bg-dark'}`}></div>
 
                         </i>
                     </div>

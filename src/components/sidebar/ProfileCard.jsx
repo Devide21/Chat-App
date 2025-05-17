@@ -42,12 +42,21 @@ const ProfileCard = () => {
             </div>
 
             <div style={{ overflowY: "scroll", height: "55vh" }}>
-                <div className="mt-4 p-3 text-start">
-                    <p className="text-secondary">If several languages coalesce, the grammar of the resulting language is more simple.</p>
+                <div className="mt-4 p-3  text-start small">
+                    <p className="text-secondary ">If several languages coalesce, the grammar of the resulting language is more simple.</p>
+                    <div className='d-flex gap-3 mt-3'>
+                        <i className="bx bx-user align-middle text-muted"></i>
+                        <p className="mb-1 text-secondary"><i className="bi bi-person"></i> Adam Zampa</p>
+                    </div>
 
-                    <p className="mb-1 text-secondary"><i className="bi bi-person"></i> Adam Zampa</p>
-                    <p className="mb-1 text-secondary"><i className="bi bi-envelope"></i> admin@themesbrand.com</p>
-                    <p className="mb-1 text-secondary"><i className="bi bi-geo-alt"></i> California, USA</p>
+                    <div className='d-flex gap-3'>
+                        <i className="bx bx-message-rounded-dots align-middle text-muted"></i>
+                        <p className="mb-1 text-secondary"><i className="bi bi-envelope"></i> admin@themesbrand.com</p>
+                    </div>
+                    <div className='d-flex gap-3'>
+                        <i class="bx bx-location-plus align-middle text-muted"></i>
+                        <p className="mb-1 text-secondary"><i className="bi bi-geo-alt"></i> California, USA</p>
+                    </div>
                 </div>
 
                 <MediaGallery />

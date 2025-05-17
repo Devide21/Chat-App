@@ -177,8 +177,8 @@ const CallHistory = () => {
                                 <div className="avatar-initials me-2">{call.initials}</div>
                             )}
                             <div>
-                                <div className="fw-lighter text-secondary">{call.name}</div>
-                                <small className={`text-${call.status === 'missed' ? 'danger' : 'success'}`}>
+                                <div className="fw-lighter text-secondary small">{call.name}</div>
+                                <small className={`small text-${call.status === 'missed' ? 'danger' : 'success'}`}>
                                     {call.status === 'missed' ? '↘' : '↗'} {call.time}
                                 </small>
                             </div>

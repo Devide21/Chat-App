@@ -28,7 +28,7 @@ const ContactList = ({ onSelectContact }) => {
 
     return (
         <>
-            <div className="border-end bg-white" style={{ height: "100vh", width: "300px" }}>
+            <div className=" bg-white" style={{ height: "100vh", width: "300px" }}>
                 <div className="position-sticky top-0 z-3 bg-white p-3 pb-2">
                     <div className="px-2 py-3 d-flex justify-content-between position-sticky top-0 z-3 bg-white p-3 pb-2">
                         <h5 className="mb-0">Contacts</h5>
@@ -49,7 +49,7 @@ const ContactList = ({ onSelectContact }) => {
                         </div>
                     </div>
                 </div>
-                <div className='p-3 py-1' style={{ height: "78vh", overflow: "auto" }}>
+                <div className='p-4 py-1 ' style={{ height: "78vh", overflow: "auto" }}>
                     {Object.keys(groupedContacts).sort().map(letter => (
                         <div key={letter}>
                             <div className="d-flex text-muted small mb-1 mt-3">
@@ -60,7 +60,7 @@ const ContactList = ({ onSelectContact }) => {
                             {groupedContacts[letter].map(({ id, name, avatar }) => (
                                 <div
                                     key={id}
-                                    className="d-flex align-items-center justify-content-between py-2"
+                                    className="d-flex align-items-center justify-content-between py-1"
                                     role="button"
                                     onClick={() => onSelectContact({ id, name, avatar })}
                                 >
@@ -72,7 +72,7 @@ const ContactList = ({ onSelectContact }) => {
                                                 {name.split(' ').map(n => n[0]).join('').toUpperCase()}
                                             </div>
                                         )}
-                                        <span>{name}</span>
+                                        <span className='small'>{name}</span>
                                     </div>
                                     <div className="dropdown">
                                         <button className="btn btn-white border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">

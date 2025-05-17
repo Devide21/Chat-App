@@ -412,3 +412,46 @@ button:active :hover {
   top: -13px;
   left: 26px;
 }
+
+/* ++++++++++++++++++ Icon Bar ++++++++++++++++ */
+ 
+.side-icon {
+  height: 22px;
+  width: 2px;
+  left: 47px;
+  top: 0px;
+  position: absolute;
+}
+
+/* ++++++++++++++++++ Theme ++++++++++++++++ */
+ 
+
+/* Light Theme */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --input-bg: #f1f1f1;
+  --primary-color: #198754;
+}
+
+/* Dark Theme */
+[data-theme='dark'] {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --input-bg: #1e1e1e;
+  --primary-color: #4caf50;
+}
+
+/* Apply to elements */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+input,
+textarea,
+.form-control {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: none;
+}
