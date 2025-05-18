@@ -3,12 +3,14 @@ import { FaSearch, FaPlus } from "react-icons/fa";
 import { contacts as initialContacts } from '../sidebar/contacts';
 import AddGroup from "../Modals/AddGroup";
 import AddMessage from "../Modals/AddMessage";
+import CreateContact from "../Modals/CreateContact";
 
 function ChatList({ onSelectContact, onShowArchived }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedIcon, setSelectedIcon] = useState("");
   const [showAddMessageModal, setShowAddMessageModal] = useState(false);
   const [showAddGroupModal, setShowAddGroupModal] = useState(false);
+  const [showCreateContactModal, setShowCreateContactModal] = useState(false);
   const [selectedContact, setSelectedContact] = useState(null);
   const [contacts, setContacts] = useState(initialContacts);
 
@@ -29,7 +31,17 @@ function ChatList({ onSelectContact, onShowArchived }) {
         <div className="position-sticky top-0 z-3 bg-white p-3 pb-2">
           <div className="px-2 py-3 d-flex justify-content-between position-sticky top-0 z-3 bg-white p-3 pb-2">
             <h5 className="mb-0">Chats</h5>
-            <button className="btn text-success btn-sm rounded-2" style={{ padding: "7px 12px", backgroundColor: "rgb(78 172 109 / 28%)" }}>+</button>
+            <button
+              onClick={() => setShowCreateContactModal(true)}
+              className="btn btn-sm rounded-1 add-btn">+
+            </button>
+
+            {showCreateContactModal && (
+              <CreateContact
+                show={showCreateContactModal}
+                setShow={setShowCreateContactModal}
+              />
+            )}
           </div>
 
           <div className=" py-2 ">
@@ -75,7 +87,7 @@ function ChatList({ onSelectContact, onShowArchived }) {
 
             <button
               onClick={() => setShowAddMessageModal(true)}
-              className="btn text-success btn-sm rounded-2" style={{ padding: "7px 12px", backgroundColor: "rgb(78 172 109 / 28%)" }}>+</button>
+              className="btn btn-sm rounded-1 add-btn">+</button>
           </div>
           {showAddMessageModal && (
             <AddMessage
@@ -114,7 +126,7 @@ function ChatList({ onSelectContact, onShowArchived }) {
             <small>CHANNELS</small>
             <button
               onClick={() => setShowAddGroupModal(true)}
-              className="btn text-success btn-sm rounded-2" style={{ padding: "7px 12px", backgroundColor: "rgb(78 172 109 / 28%)" }}>+</button>
+              className="btn btn-sm rounded-1 add-btn">+</button>
 
             {showAddGroupModal && (
               <AddGroup

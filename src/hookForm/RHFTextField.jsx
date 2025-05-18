@@ -28,7 +28,7 @@ export default function RHFTextField({ name, helperText, InputProps, ...other })
                         <input {...finalProps} />
                         {InputProps && InputProps.endAdornment && !error && (
                             <div
-                                className="position-absolute top-50 end-0 translate-middle-y me-3"
+                                className="position-absolute top-50 end-0 translate-middle-y me-3 "
                                 style={{ cursor: "pointer" }}
                             >
                                 {InputProps.endAdornment}

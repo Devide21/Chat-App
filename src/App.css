@@ -414,7 +414,7 @@ button:active :hover {
 }
 
 /* ++++++++++++++++++ Icon Bar ++++++++++++++++ */
- 
+
 .side-icon {
   height: 22px;
   width: 2px;
@@ -424,7 +424,8 @@ button:active :hover {
 }
 
 /* ++++++++++++++++++ Theme ++++++++++++++++ */
- 
+
+/* index.css or App.css */
 
 /* Light Theme */
 :root {
@@ -454,4 +455,64 @@ textarea,
   background-color: var(--input-bg);
   color: var(--text-color);
   border: none;
+}
+
+input,
+textarea,
+select {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--input-border);
+  transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.card,
+.modal-content {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.btn-success {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+input,
+textarea,
+.form-control {
+  background-color: #f1f1f154;
+  color: var(--text-color);
+  border: none;
+  border-radius: 3px;
+}
+
+/* ++++++++++++++++++ Add btn ++++++++++++++++ */
+.add-btn {
+  padding: 5px 10px;
+  background-color: rgba(78, 172, 109, 0.193);
+  color: #198754;
+}
+
+.add-btn:hover {
+  background-color: #006a00bf;
+  color: white;
+}
+
+/* ++++++++++++++++++ Side icon ++++++++++++++++ */
+.side-menu-user {
+
+  img {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+
+  }
+}
+
+/* ++++++++++++++++++ Dropdown ++++++++++++++++ */
+.dropdown-item:focus,
+.dropdown-item:active {
+  background-color: transparent !important;
+  color: inherit !important;
 }

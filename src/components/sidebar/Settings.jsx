@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
-import MediaGallery from '../MediaGallery';
-import AttachedFiles from '../AttachedFile';
-import { ThreeDotsVertical } from 'react-bootstrap-icons';
+import React, { useCallback, useState } from 'react';
+import * as Yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import FormProvider from '/src/hookForm/FormProvider.jsx';
+import { RHFTextField } from '../../hookForm';
 
 function Settings() {
 
-  // for Backgournd img 
   const [selectedFile, setSelectedFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState('src/assets/doot-prfile-img.jpg'); // default image
+  const [previewUrl, setPreviewUrl] = useState('src/assets/doot-prfile-img.jpg');
+  const [profileImg, setProfileImg] = useState('src/assets/adam-zampa-avtar.jpg');
+  const [isEdit, setIsEdit] = useState(false);
+  const [status, setStatus] = useState('Active');
+  const [personalInfo, setPersonalInfo] = useState({
+    name: 'Adam Zampa',
+    email: 'adc@123.com',
+    location: 'California, USA'
+  });
+
+  const [privacy, setPrivacy] = useState({
+    lastSeen: 'Everyone',
+    readReceipts: true,
+    profilePhoto: 'Everyone',
+    status: 'Everyone',
+    groups: 'Everyone'
+  });
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -18,8 +35,6 @@ function Settings() {
     }
   };
 
-  // for Profile pic 
-  const [profileImg, setProfileImg] = useState('src/assets/adam-zampa-avtar.jpg');
 
   const handleProfileChange = (e) => {
     const file = e.target.files[0];
@@ -29,28 +44,17 @@ function Settings() {
     }
   };
 
-  // active status 
-  const [status, setStatus] = useState('Active');
 
   const statusColorMap = {
     Active: '',
     Away: 'bg-warning',
-    'Do Not Disturb': 'bg-danger',
+    DoNotDisturb: 'bg-danger',
   };
 
   const handleStatusChange = (selectedStatus) => {
     setStatus(selectedStatus);
   };
 
-
-
-  const [privacy, setPrivacy] = useState({
-    lastSeen: 'Everyone',
-    readReceipts: true,
-    profilePhoto: 'Everyone',
-    status: 'Everyone',
-    groups: 'Everyone'
-  });
 
   const handleSelectChange = (e) => {
     const { name, value } = e.target;
@@ -68,13 +72,7 @@ function Settings() {
     }));
   };
 
-  const [personalInfo, setPersonalInfo] = useState({
-    name: 'Kathryn Swarey',
-    email: 'adc@123.com',
-    location: 'California, USA'
-  });
 
-  const [isEdit, setIsEdit] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -88,6 +86,88 @@ function Settings() {
       [name]: value
     }));
   };
+
+  const Editsettings = () => {
+
+    const settingSchema = Yup.object().shape({
+      name: Yup.string().required("Name is required").min(3, "Name must be at least 3 characters"),
+      email: Yup.string().required("Email is required").email("Email is invalid"),
+      location: Yup.string().notRequired(),
+      avatarUrl: Yup.mixed().required("Avatar is required").nullable(true),
+    });
+    
+    const defaultValues = {
+      name: personalInfo.name || "",
+      email: personalInfo.email || "",
+      location: personalInfo.location || "",
+      avatarUrl: "",
+    };
+
+    const methods = useForm({
+      resolver: yupResolver(settingSchema),
+      defaultValues,
+    });
+
+    const {
+      handleSubmit,
+      reset,
+      watch,
+      control,
+      setValue,
+      setError,
+      formState: { errors, isSubmitting, isSubmitSuccessful },
+    } = methods;
+
+    const values = watch();
+    const handleDrop = useCallback((acceptedFiles) => {
+
+      const file = acceptedFiles[0];
+
+      const newFile = Object.assign(file, {
+        preview: URL.createObjectURL(file)
+      })
+
+      if (file) {
+        setValue("avatarUrl", newFile, { shouldValidate: true })
+      }
+
+
+    }, [setValue]);
+
+    const onSubmit = async (data) => {
+      try {
+        // Submit to backend
+        setPersonalInfo((prev) => ({
+          ...prev,
+          name: data.name,
+          email: data.email,
+          location: data.location,
+        }));
+        setIsEdit(false);
+        console.log("Data", data);
+      } catch (error) {
+        console.error(error);
+        reset();
+        setError("afterSubmit", {
+          ...error,
+          // type: 'manual',
+          message: error.message || "Something went wrong",
+        });
+      }
+    };
+    return (
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="email">Email</label>
+        <RHFTextField name="name" placeholder="Enter Name" />
+        <RHFTextField name="email" placeholder="Enter email" />
+        <RHFTextField name="location" placeholder="Enter Location" />
+
+        <button
+          onSubmit={() => setPersonalInfo()}
+          type="submit" className="btn btn-success w-100 py-2 mt-4">Submit</button>
+      </FormProvider>
+    )
+  }
 
 
   return (
@@ -104,7 +184,7 @@ function Settings() {
                 onChange={handleFileChange}
                 accept="image/*"
               />
-              <label htmlFor="file" className="fa-solid fa-pencil text-dark mt-1 pt-1"></label>
+              <label htmlFor="file" className="bx bxs-pencil text-dark mt-1 pt-1 pointer"></label>
             </div>
           </div>
           <img
@@ -142,7 +222,7 @@ function Settings() {
           </div>
         </div>
         <div className=" mt-2">
-          <h6 className="mb-0 fw-bold">Adam Zampa</h6>
+          <h6 className="mb-0 fw-bold">{personalInfo.name}</h6>
           <div className="dropdown-center">
             <button
               className="btn btn-white dropdown-toggle text-secondary border-0"
@@ -172,10 +252,10 @@ function Settings() {
       </div>
 
       <div style={{ overflowY: "auto", height: "50vh" }}>
-        <div className="accordion " id="accordionExample">
+        <div className="accordion rounde-0 " id="accordionExample">
           <div className="accordion-item rounded-0 border-0  ">
-            <h2 className="accordion-header">
-              <button className="accordion-button text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <h2 className="accordion-header rounded-0">
+              <button className="accordion-button rounde-0 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 <small><i className="fa-solid fa-user me-3"></i>
                   Personal Info</small>
               </button>
@@ -185,60 +265,65 @@ function Settings() {
                 <div className='d-flex justify-content-between'>
                   {isEdit === true ?
                     (
-                      <form className='text-start'
-                        onSubmit={handleSubmit}>
-                        <small className="mb-2 text-start">
-                          <label htmlFor="exampleInputEmail1" className="form-label ">Name</label>
-                          <input type="text"
-                            className="form-control text-start"
-                            id="name"
-                            name="name"
-                            value={personalInfo.name}
-                            onChange={handleChange}
-                          />
+                      <>
+                      <Editsettings/>
+                      </>
+                      // <form className='text-start'
+                      //   onSubmit={handleSubmit}>
+                      //   <small className="mb-2 text-start">
+                      //     <label htmlFor="exampleInputEmail1" className="form-label ">Name</label>
+                      //     <input type="text"
+                      //       className="form-control text-start"
+                      //       id="name"
+                      //       name="name"
+                      //       value={personalInfo.name}
+                      //       onChange={handleChange}
+                      //     />
 
-                        </small>
-                        <small className="mb-2 text-start">
-                          <label className="form-label">Email</label>
-                          <input type="email"
-                            className="form-control"
-                            id="email"
-                            name="email"
-                            value={personalInfo.email}
-                            onChange={handleChange}
+                      //   </small>
+                      //   <small className="mb-2 text-start">
+                      //     <label className="form-label">Email</label>
+                      //     <input type="email"
+                      //       className="form-control"
+                      //       id="email"
+                      //       name="email"
+                      //       value={personalInfo.email}
+                      //       onChange={handleChange}
 
-                          />
-                        </small>
-                        <small className="mb-2 text-start">
-                          <label className="form-label">Location</label>
-                          <input type="text"
-                            className="form-control"
-                            id="location"
-                            name="location"
-                            value={personalInfo.location}
-                            onChange={handleChange}
+                      //     />
+                      //   </small>
+                      //   <small className="mb-2 text-start">
+                      //     <label className="form-label">Location</label>
+                      //     <input type="text"
+                      //       className="form-control"
+                      //       id="location"
+                      //       name="location"
+                      //       value={personalInfo.location}
+                      //       onChange={handleChange}
 
-                          />
-                        </small>
-                        <button type="submit"
-                          className="btn btn-success mt-2">Submit</button>
-                      </form>
+                      //     />
+                      //   </small>
+                      //   <button type="submit"
+                      //     className="btn btn-success mt-2">Submit</button>
+                      // </form>
 
                     ) : (
                       <div className='d-flex justify-content-between w-100'>
                         <div className='d-grid'>
                           <small className='text-secondary text-start'>Name</small>
-                          <small>{personalInfo.name}</small>
+                          <small className='text-start'>{personalInfo.name}</small>
                           <small className='text-secondary text-start mt-3'>Email</small>
                           <small className='text-start'>{personalInfo.email}</small>
                           <small className='text-secondary text-start mt-3'>Location</small>
                           <small className='text-start'>{personalInfo.location}</small>
                         </div>
-                        <button className="btn text-success btn-sm rounded-2"
-                          onClick={() => setIsEdit(true)}
-                          style={{ height: "fit-content", padding: "5px 11px", backgroundColor: "rgb(78 172 109 / 28%)" }}>
-                          <i className="fa-solid fa-pencil  mt-1 pt-1"></i>
-                        </button>
+                        <div>
+                          <button
+                            onClick={() => setIsEdit(true)}
+                            className="btn btn-sm rounded-1 add-btn">
+                            <i className="bx bxs-pencil align-middle"></i>
+                          </button>
+                        </div>
 
                       </div>
                     )}

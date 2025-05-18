@@ -86,7 +86,7 @@ function AddGroup({ show, setShow, onSelectGroup }) {
                 <textarea
                   type="text"
                   rows={5}
-                  className="form-control-sm border"
+                  className="form-control-sm "
                   placeholder="Enter Group Description"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}

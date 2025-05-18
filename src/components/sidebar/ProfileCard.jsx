@@ -54,7 +54,7 @@ const ProfileCard = () => {
                         <p className="mb-1 text-secondary"><i className="bi bi-envelope"></i> admin@themesbrand.com</p>
                     </div>
                     <div className='d-flex gap-3'>
-                        <i class="bx bx-location-plus align-middle text-muted"></i>
+                        <i className="bx bx-location-plus align-middle text-muted"></i>
                         <p className="mb-1 text-secondary"><i className="bi bi-geo-alt"></i> California, USA</p>
                     </div>
                 </div>

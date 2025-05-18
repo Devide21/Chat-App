@@ -57,7 +57,7 @@ function AddMessage({ show, setShow, onSelectContact }) {
               <h5 className="modal-title">Select Contact</h5>
               <button
                 type="button"
-                className="btn-close"
+                className="btn-close small"
                 onClick={() => setShow(false)}
               ></button>
             </div>
