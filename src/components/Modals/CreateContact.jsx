@@ -42,7 +42,7 @@ function CreateContact({ show, setShow }) {
     <div className={`modal shadow fade ${show ? "show d-block" : ""}`} style={{ background: "#00000036" }} tabIndex="-1">
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content rounded-3" style={{ height: "460px" }}>
-          <div className="modal-header bg-success text-white rounded-top">
+          <div className="modal-header border-0 bg-success text-white rounded-top">
             <h5 className="modal-title fs-6">Create Contact</h5>
             <button type="button" className="btn-close" onClick={() => setShow(false)}></button>
           </div>
@@ -59,7 +59,7 @@ function CreateContact({ show, setShow }) {
                 <RHFTextField name="name" label="Name" placeholder="Enter Name" />
               </div>
 
-              <div className="d-flex flex-column text-start small gap-2 ">
+              <div className="d-flex flex-column text-start small gap-2 bottom-border">
                 <label>Invitation Message</label>
                 <textarea
                   {...register("invitationMessage")}
@@ -72,7 +72,7 @@ function CreateContact({ show, setShow }) {
                 )}
               </div>
 
-              <div className='d-flex justify-content-end border-top w-100 pt-2'>
+              <div className='d-flex justify-content-end  w-100 pt-2'>
                 <button className="btn btn-white text-success" type="button" onClick={() => setShow(false)}>Close</button>
                 <button type="submit" className="btn btn-success opacity-75 ms-2">Invite</button>
               </div>

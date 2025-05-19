@@ -76,7 +76,7 @@ function ChatLayout() {
 
   return (
     <div className="d-flex main-body">
-      <div className="d-flex" style={{ borderRight: "1px solid #ddd" }}>
+      <div className="d-flex">
         <IconBar onSelectedIcon={handleSidebarChange} />
         {showArchived ? (
           <Archived onSelectContact={setSelectedContact}
@@ -88,8 +88,6 @@ function ChatLayout() {
             onShowArchived={setShowArchived}
           />
         )}
-        {/* <Archived onSelectContact={setSelectedContact}
-          onShowArchived={setShowArchived} /> */}
       </div>
       <div className="d-flex flex-column vh-100" style={{ width: "100%" }}>
         {selectedContact ? (

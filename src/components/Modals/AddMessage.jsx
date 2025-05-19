@@ -53,7 +53,7 @@ function AddMessage({ show, setShow, onSelectContact }) {
       <div className="modal-dialog modal-dialog-centered">
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <div className="modal-content rounded-3" style={{ height: "400px" }}>
-            <div className="modal-header bg-success text-white rounded-top">
+            <div className="modal-header border-0 bg-success text-white rounded-top">
               <h5 className="modal-title">Select Contact</h5>
               <button
                 type="button"

@@ -95,7 +95,7 @@ function Settings() {
       location: Yup.string().notRequired(),
       avatarUrl: Yup.mixed().required("Avatar is required").nullable(true),
     });
-    
+
     const defaultValues = {
       name: personalInfo.name || "",
       email: personalInfo.email || "",
@@ -157,7 +157,6 @@ function Settings() {
     };
     return (
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email">Email</label>
         <RHFTextField name="name" placeholder="Enter Name" />
         <RHFTextField name="email" placeholder="Enter email" />
         <RHFTextField name="location" placeholder="Enter Location" />
@@ -171,12 +170,12 @@ function Settings() {
 
 
   return (
-    <div className="bg-white" style={{ width: '300px', height: '100vh', }}>
-      <div className="position-sticky border-bottom border-tertiary top-0 z-3 bg-white  pb-4">
+    <div className="" style={{ width: '300px', height: '100vh', }}>
+      <div className="position-sticky border-bottom border-tertiary top-0 z-3   pb-4">
         <div className="text-center position-relative">
           <div className='d-flex position-absolute text-white justify-content-between w-100'>
             <p className='fs-5 p-2'>Settings</p>
-            <div className='bg-white rounded-circle edit-icon mt-2 me-3'>
+            <div className=' rounded-circle edit-icon mt-2 me-3'>
               <input
                 type="file"
                 id="file"
@@ -184,7 +183,7 @@ function Settings() {
                 onChange={handleFileChange}
                 accept="image/*"
               />
-              <label htmlFor="file" className="bx bxs-pencil text-dark mt-1 pt-1 pointer"></label>
+              <label htmlFor="file" className="bx bxs-pencil rounded-circle mt-1 p-2 pointer"></label>
             </div>
           </div>
           <img
@@ -195,7 +194,7 @@ function Settings() {
           />
 
           <div className=''>
-            <div className='bg-light rounded-circle settings-profile mt-2 me-3'>
+            <div className='rounded-circle settings-profile mt-2 me-3'>
               <input
                 type="file"
                 id="profile"
@@ -203,19 +202,19 @@ function Settings() {
                 accept="image/*"
                 onChange={handleProfileChange}
               />
-              <label htmlFor='profile' className="fa-solid fa-camera pt-1 mt-1"></label>
+              <label htmlFor='profile' className="fa-solid fa-camera rounded-circle p-2 mt-1"></label>
             </div>
 
             <img
               src={profileImg}
-              className="rounded-circle position-absolute"
+              className="rounded-circle position-absolute profile-img"
               style={{
                 top: '110px',
                 left: '50%',
                 transform: 'translateX(-50%)',
                 height: '85px',
                 width: '85px',
-                border: '6px solid #ebebeb'
+
               }}
               alt="avatar"
             />
@@ -255,7 +254,7 @@ function Settings() {
         <div className="accordion rounde-0 " id="accordionExample">
           <div className="accordion-item rounded-0 border-0  ">
             <h2 className="accordion-header rounded-0">
-              <button className="accordion-button rounde-0 text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <button className="accordion-button rounde-0 " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 <small><i className="fa-solid fa-user me-3"></i>
                   Personal Info</small>
               </button>
@@ -266,7 +265,7 @@ function Settings() {
                   {isEdit === true ?
                     (
                       <>
-                      <Editsettings/>
+                        <Editsettings />
                       </>
                       // <form className='text-start'
                       //   onSubmit={handleSubmit}>
@@ -333,7 +332,7 @@ function Settings() {
           </div>
           <div className="accordion-item rounded-0 border-0 border-top ">
             <h2 className="accordion-header">
-              <button className="accordion-button collapsed text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <button className="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 <small>
                   <i className="fa-solid fa-circle-half-stroke me-3"></i>
                   Themes</small>
@@ -352,17 +351,17 @@ function Settings() {
                 </div>
                 <small className='text-secondary '>Choose Theme Image :</small>
                 <div className='d-flex justify-content-between'>
-                  <div className='rounded-circle bg-white border mt-2 color-palate'></div>
-                  <div className='rounded-circle bg-white border mt-2 color-palate'></div>
-                  <div className='rounded-circle bg-white border mt-2 color-palate'></div>
-                  <div className='rounded-circle bg-white border mt-2 color-palate'></div>
-                  <div className='rounded-circle bg-white border mt-2 color-palate'></div>
-                  <div className='rounded-circle bg-white border mt-2 color-palate'></div>
-                  <div className='rounded-circle bg-white border mt-2 color-palate'></div>
+                  <div className='rounded-circle  border mt-2 color-palate'></div>
+                  <div className='rounded-circle  border mt-2 color-palate'></div>
+                  <div className='rounded-circle  border mt-2 color-palate'></div>
+                  <div className='rounded-circle  border mt-2 color-palate'></div>
+                  <div className='rounded-circle  border mt-2 color-palate'></div>
+                  <div className='rounded-circle  border mt-2 color-palate'></div>
+                  <div className='rounded-circle  border mt-2 color-palate'></div>
                 </div>
                 <div className='d-flex'>
-                  <div className='rounded-circle bg-white border me-2 mt-2 color-palate'></div>
-                  <div className='rounded-circle bg-white border me-2 mt-2 color-palate'></div>
+                  <div className='rounded-circle  border me-2 mt-2 color-palate'></div>
+                  <div className='rounded-circle  border me-2 mt-2 color-palate'></div>
                 </div>
               </div>
             </div>
@@ -370,7 +369,7 @@ function Settings() {
           <div className="accordion-item rounded-0 border-0 border-top ">
             <h2 className="accordion-header">
               <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                <small className='text-dark'>
+                <small className=''>
                   <i className="fa-solid fa-lock me-3"></i>
                   Privacy
                 </small>
@@ -398,7 +397,7 @@ function Settings() {
 
                 {/* Last Seen */}
                 <small className="form-check border-bottom form-switch d-flex ps-0 text-secondary py-3 justify-content-between w-100">
-                  <label className="form-check-label" htmlFor="lastSeenSwitch">Last Seen</label>
+                  <p className="form-check-label" htmlFor="lastSeenSwitch">Last Seen</p>
                   <input
                     className="form-check-input"
                     type="checkbox"
@@ -437,7 +436,7 @@ function Settings() {
 
                 {/* Read Receipts */}
                 <small className="form-check form-switch d-flex border-bottom ps-0 text-secondary py-3 justify-content-between w-100">
-                  <label className="form-check-label" htmlFor="readReceipts">Read receipts</label>
+                  <p className="form-check-label" htmlFor="readReceipts">Read receipts</p>
                   <input
                     className="form-check-input"
                     type="checkbox"
@@ -471,7 +470,7 @@ function Settings() {
           <div className="accordion-item rounded-0 border-0 border-top ">
             <h2 className="accordion-header">
               <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                <small className='text-dark'>
+                <small className=''>
                   <i className="fa-solid fa-shield-halved me-3"></i>
                   Security
                 </small>
@@ -481,7 +480,7 @@ function Settings() {
               <div className="accordion-body">
                 <small className='d-flex'>
                   <div className="form-check form-switch">
-                    <label className="form-check-label" htmlFor="switchCheckDefault">Show security notification</label>
+                    <d className="form-check-label" htmlFor="switchCheckDefault">Show security notification</d>
                     <input className="form-check-input" type="checkbox" role="switch" id="switchCheckDefault" />
                   </div>
                 </small>
@@ -491,7 +490,7 @@ function Settings() {
           <div className="accordion-item rounded-0 border-0 border-top ">
             <h2 className="accordion-header">
               <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                <small className='text-dark'>
+                <small className=''>
                   <i className="fa-solid fa-circle-question me-3"></i>
                   Help
                 </small>

@@ -27,15 +27,14 @@ function ChatList({ onSelectContact, onShowArchived }) {
 
   return (
     <>
-      <div className=" bg-white" style={{ height: "100vh", width: "300px" }}>
-        <div className="position-sticky top-0 z-3 bg-white p-3 pb-2">
-          <div className="px-2 py-3 d-flex justify-content-between position-sticky top-0 z-3 bg-white p-3 pb-2">
+      <div className=" " style={{ height: "100vh", width: "300px" }}>
+        <div className="position-sticky top-0 z-3  p-3 pb-2 white-bg">
+          <div className="px-2 py-3 d-flex justify-content-between position-sticky top-0 z-3 white-bg p-3  pb-2">
             <h5 className="mb-0">Chats</h5>
             <button
               onClick={() => setShowCreateContactModal(true)}
               className="btn btn-sm rounded-1 add-btn">+
             </button>
-
             {showCreateContactModal && (
               <CreateContact
                 show={showCreateContactModal}
@@ -45,21 +44,21 @@ function ChatList({ onSelectContact, onShowArchived }) {
           </div>
 
           <div className=" py-2 ">
-            <div className="input-group bg-light rounded-2">
-              <span className="input-group-text text-secondary bg-light border-0">
-                <FaSearch />
-              </span>
+            <div className="input-group position-relative rounded-2">
               <input
                 type="text"
-                className="form-control border-0 rounded-3  text-body-tertiary bg-light fw-lighter fs-6"
+                className="form-control border-0 rounded-3   fw-lighter fs-6"
                 placeholder="Search here..."
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
+              <i className="bx bx-search position-absolute"
+                style={{ top: "10px", right: "12px" }}>
+              </i>
             </div>
           </div>
         </div>
         <div style={{ overflow: "auto", height: "78vh" }}>
-          <small className="d-flex px-3 py-2 text-muted small  text-start">FAVOURITES</small>
+          <small className="d-flex px-3 py-2  small  text-start">FAVOURITES</small>
           <div className="px-4 small">
             {filterContacts(contacts).map((contact) => (
               contact.isFavourite && contact.isDirectMessage === false && (
@@ -82,7 +81,7 @@ function ChatList({ onSelectContact, onShowArchived }) {
             ))}
           </div>
 
-          <div className="px-3 py-2 d-flex justify-content-between align-items-center text-muted small fw-lighter-">
+          <div className="px-3 py-2 d-flex justify-content-between align-items-center small fw-lighter-">
             <small>DIRECT MESSAGES</small>
 
             <button
@@ -101,8 +100,6 @@ function ChatList({ onSelectContact, onShowArchived }) {
           <div className="px-4">
             {filterContacts(contacts).map((contact) => (
               contact.isDirectMessage && contact.isGroup === false && (
-                //  && contact.isGroup === false && !contact.isArchived && 
-
                 <div
                   key={contact.id}
                   className="d-flex align-items-center mb-2 small"
@@ -122,7 +119,7 @@ function ChatList({ onSelectContact, onShowArchived }) {
             ))}
           </div>
 
-          <div className="px-3 py-2 d-flex justify-content-between align-items-center text-muted small fw-lighter-">
+          <div className="px-3 py-2 d-flex justify-content-between align-items-center  small fw-lighter">
             <small>CHANNELS</small>
             <button
               onClick={() => setShowAddGroupModal(true)}
@@ -142,7 +139,7 @@ function ChatList({ onSelectContact, onShowArchived }) {
 
 
           </div>
-          <div className="px-4 text-muted text-start">
+          <div className="px-4 text-start">
             {contacts.map((contact, idx) => (
               contact.isGroup && !contact.isArchived && (
                 <div

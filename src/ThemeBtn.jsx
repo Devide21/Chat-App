@@ -5,9 +5,10 @@ function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <button onClick={toggleTheme} className="btn btn-sm btn-outline-secondary">
-      Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
-    </button>
+    <i
+      onClick={toggleTheme}
+      className={`p-0 text-secondary m-0 bx  bx-${theme === 'light' ? 'moon' : 'sun'}`}>
+    </i>
   );
 }
 

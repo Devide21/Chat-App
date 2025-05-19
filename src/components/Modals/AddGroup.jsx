@@ -59,7 +59,7 @@ function AddGroup({ show, setShow, onSelectGroup }) {
     <div className={`modal shadow fade ${show ? "show d-block" : ""}`} style={{ background: "#00000036" }} tabIndex="-1">
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content rounded-3" style={{ height: "485px" }}>
-          <div className="modal-header bg-success text-white rounded-top">
+          <div className="modal-header border-0 bg-success text-white rounded-top">
             <h5 className="modal-title fs-6">Create New Group</h5>
             <button type="button" className="btn-close" onClick={() => setShow(false)}></button>
           </div>

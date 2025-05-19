@@ -12,32 +12,34 @@ function Archived({ onSelectContact, onShowArchived }) {
 
     return (
         <>
-            <div className="border-end bg-white" style={{ height: "100vh", width: "300px" }}>
-                <div className="position-sticky top-0 z-3 bg-white p-3 pb-2">
-                    <div className="px-2 py-3 d-flex justify-content-between position-sticky top-0 z-3 bg-white p-3 pb-2">
+            <div style={{ height: "100vh", width: "300px" }}>
+                <div className="position-sticky top-0 z-3  p-3 pb-2">
+                    <div className="px-2 py-3 d-flex justify-content-between position-sticky top-0 z-3  p-3 pb-2">
                         <h5 className="mb-0">Chats</h5>
-                        <button className="btn text-success btn-sm rounded-2" style={{ padding: "7px 12px", backgroundColor: "rgb(78 172 109 / 28%)" }}>+</button>
+                        <button
+                            className="btn btn-sm rounded-1 add-btn">+
+                        </button>
                     </div>
 
                     <div className=" py-2 ">
-                        <div className="input-group bg-light rounded-2">
-                            <span className="input-group-text text-secondary bg-light border-0">
-                                <FaSearch />
-                            </span>
+                        <div className="input-group position-relative rounded-2">
                             <input
                                 type="text"
-                                className="form-control border-0 rounded-3  text-body-tertiary bg-light fw-lighter fs-6"
+                                className="form-control border-0 rounded-3   fw-lighter fs-6"
                                 placeholder="Search here..."
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
+                            <i className="bx bx-search position-absolute"
+                                style={{ top: "10px", right: "12px" }}>
+                            </i>
                         </div>
                     </div>
                 </div>
                 <div style={{ overflow: "auto", height: "78vh" }}>
-                    <small className="d-flex px-3 py-2 text-muted small fw-lighter text-start"
+                    <small className="d-flex px-3 py-2  small fw-lighter text-start"
                         onClick={() => onShowArchived(false)}
                     >Archived</small>
-                    <div className="px-3">
+                    <div className="px-4 small">
                         {filterContacts(contacts).map((contact) => (
                             contact.isArchived && (
                                 <div

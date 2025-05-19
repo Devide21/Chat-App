@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 import { FaSearch } from 'react-icons/fa';
 import { contacts as allContacts } from "./contacts";
+import CreateContact from "../Modals/CreateContact";
+
+
 
 const groupContacts = (filteredList) => {
     const grouped = {};
@@ -15,6 +18,7 @@ const groupContacts = (filteredList) => {
 
 const ContactList = ({ onSelectContact }) => {
     const [searchTerm, setSearchTerm] = useState("");
+    const [showCreateContactModal, setShowCreateContactModal] = useState(false);
 
     const individualContacts = allContacts.filter(contact => contact.isGroup === false);
 
@@ -28,24 +32,32 @@ const ContactList = ({ onSelectContact }) => {
 
     return (
         <>
-            <div className=" bg-white" style={{ height: "100vh", width: "300px" }}>
-                <div className="position-sticky top-0 z-3 bg-white p-3 pb-2">
-                    <div className="px-2 py-3 d-flex justify-content-between position-sticky top-0 z-3 bg-white p-3 pb-2">
+            <div style={{ height: "100vh", width: "300px" }}>
+                <div className="position-sticky top-0 z-3  p-3 pb-2">
+                    <div className="px-2 py-3 d-flex justify-content-between position-sticky top-0 z-3  p-3 pb-2">
                         <h5 className="mb-0">Contacts</h5>
-                        <button className="btn text-success btn-sm rounded-2" style={{ padding: "7px 12px", backgroundColor: "rgb(78 172 109 / 28%)" }}>+</button>
+                        <button
+                            onClick={() => setShowCreateContactModal(true)}
+                            className="btn btn-sm rounded-1 add-btn">+
+                        </button>
+                        {showCreateContactModal && (
+                            <CreateContact
+                                show={showCreateContactModal}
+                                setShow={setShowCreateContactModal}
+                            />
+                        )}
                     </div>
-
                     <div className=" py-2 ">
-                        <div className="input-group bg-light rounded-2">
-                            <span className="input-group-text text-secondary bg-light border-0">
-                                <FaSearch />
-                            </span>
+                        <div className="input-group position-relative rounded-2">
                             <input
                                 type="text"
-                                className="form-control border-0 rounded-3  text-body-tertiary bg-light fw-lighter fs-6"
+                                className="form-control border-0 rounded-3   fw-lighter fs-6"
                                 placeholder="Search here..."
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
+                            <i className="bx bx-search position-absolute"
+                                style={{ top: "10px", right: "12px" }}>
+                            </i>
                         </div>
                     </div>
                 </div>
@@ -54,7 +66,7 @@ const ContactList = ({ onSelectContact }) => {
                         <div key={letter}>
                             <div className="d-flex text-muted small mb-1 mt-3">
                                 <span className="px-2 text-success">{letter}</span>
-                                <span className="flex-grow-1 border-bottom" />
+                                <span className="flex-grow-1 bottom-border" />
                             </div>
 
                             {groupedContacts[letter].map(({ id, name, avatar }) => (
@@ -76,7 +88,7 @@ const ContactList = ({ onSelectContact }) => {
                                     </div>
                                     <div className="dropdown">
                                         <button className="btn btn-white border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <ThreeDotsVertical />
+                                            <i className="fa-solid fa-ellipsis-vertical text-success"></i>
                                         </button>
                                         <ul className="dropdown-menu">
                                             <li><a className="dropdown-item d-flex justify-content-between text-secondary border-0" href="#"><span>Edit</span><i className="fa-solid fa-pencil"></i></a></li>

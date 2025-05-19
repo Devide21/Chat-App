@@ -163,11 +163,14 @@ const calls = [
 
 const CallHistory = () => {
     return (
-        <div className="border-end bg-white" style={{ width: "300px", height: "100vh", overflowY: "auto" }}>
-            <div className=" d-flex justify-content-between position-sticky top-0 z-3 bg-white p-4 ">
-                <h5 className="mb-0 fw-semibold text-dark opacity-75 fs-4 ">Calls</h5>
+        <div style={{ width: "300px", height: "100vh", overflowY: "auto" }}>
+            <div className="position-sticky top-0 z-3  p-3 pb-2 white-bg">
+                <div className="px-2 py-3 d-flex justify-content-between position-sticky top-0 z-3  p-3 pb-2">
+                    <h5 className="mb-0 ">Calls</h5>
+
+                </div>
             </div>
-            <div className="list-group bg-white rounded p-2">
+            <div className="list-group  rounded p-2">
                 {calls.map((call, idx) => (
                     <div key={idx} className="d-flex align-items-center justify-content-between p-2 border-bottom">
                         <div className="d-flex align-items-center">

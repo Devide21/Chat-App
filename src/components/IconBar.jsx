@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { pages } from './pages';
+import ThemeToggle from "../ThemeBtn";
 
 
 function IconBar({ onSelectedIcon }) {
-    const [selectedIcon, setSelectedIcon] = useState("DummyIcon");
+    const [selectedIcon, setSelectedIcon] = useState("");
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [chnagePassword, setChangePassword] = useState(false);
     const [isLogOut, setLogOut] = useState(false);
+
+
 
     return (
         <>
@@ -27,9 +30,7 @@ function IconBar({ onSelectedIcon }) {
                     </div>
                 ))}
                 <div className="text-center py-2">
-                    <i 
-                    onClick={() => isDarkMode ? setIsDarkMode(false) : setIsDarkMode(true)}
-                    className={`bx  bx-${isDarkMode? "sun" : "moon"} text-secondary fs-4 text-secondary`}></i>
+                    <ThemeToggle />
                 </div>
                 <div className="dropdown">
                     <button className="btn btn-white border-0 m-0 p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
